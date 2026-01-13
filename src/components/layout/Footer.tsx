@@ -67,10 +67,7 @@ export default function Footer() {
 
         <div className="border-t border-[#124559] mt-16 pt-8 text-center text-[#598392] text-sm">
           <p className="mb-2">&copy; {new Date().getFullYear()} Bulk Vapes USA. All rights reserved.</p>
-          <p className="opacity-60 text-xs max-w-2xl mx-auto">
-            WARNING: This product contains nicotine. Nicotine is an addictive chemical. 
-            For use by adults 21 years of age or older only.
-          </p>
+         
         </div>
       </div>
     </footer>
