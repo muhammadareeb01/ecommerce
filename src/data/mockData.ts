@@ -159,7 +159,48 @@ export const PRODUCTS: Product[] = [
         description: 'High-performance pod system with adjustable airflow.',
         features: ['25W Max Output', 'OLED Screen', 'Type-C Charging'],
         isFeatured: true
-    }
+    },
+
+     {
+        id: 'prod_5',
+        name: 'Fruit Fusion E-Liquid',
+        slug: 'fruit-fusion-eliquid',
+        price: 14.99,
+        wholesalePrice: 7.50,
+        wholesaleMinQty: 10,
+        category: 'e-liquids',
+        image: 'https://images.unsplash.com/photo-1550963295-019d8a8a61c5?auto=format&fit=crop&q=80&w=600',
+        description: 'A tropical blend of mango, pineapple, and kiwi.',
+        features: ['70/30 VG/PG', '100ml Shortfill', '0mg / 3mg'],
+        isFeatured: false
+    },
+
+      {
+        id: 'prod_6',
+        name: 'Fruit Fusion E-Liquid',
+        slug: 'fruit-fusion-eliquid',
+        price: 14.99,
+        wholesalePrice: 7.50,
+        wholesaleMinQty: 10,
+        category: 'e-liquids',
+        image: 'https://images.unsplash.com/photo-1550963295-019d8a8a61c5?auto=format&fit=crop&q=80&w=600',
+        description: 'A tropical blend of mango, pineapple, and kiwi.',
+        features: ['70/30 VG/PG', '100ml Shortfill', '0mg / 3mg'],
+        isFeatured: false
+    },
+     {
+        id: 'prod_7',
+        name: 'Fruit Fusion E-Liquid',
+        slug: 'fruit-fusion-eliquid',
+        price: 14.99,
+        wholesalePrice: 7.50,
+        wholesaleMinQty: 10,
+        category: 'e-liquids',
+        image: 'https://images.unsplash.com/photo-1550963295-019d8a8a61c5?auto=format&fit=crop&q=80&w=600',
+        description: 'A tropical blend of mango, pineapple, and kiwi.',
+        features: ['70/30 VG/PG', '100ml Shortfill', '0mg / 3mg'],
+        isFeatured: false
+    },
 ];
 
 export const FAQS: FaqItem[] = [

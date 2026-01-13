@@ -7,7 +7,7 @@ const resend = new Resend(process.env.RESEND_API_KEY || 're_GYTGjk2U_N1LUK5nFR6U
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, email, whatsapp, paymentMethod, items, total } = body;
+    const { name, email, whatsapp, address, paymentMethod, items, total } = body;
 
     // Construct Email HTML
     const itemsHtml = items.map((item: any) => `
@@ -24,6 +24,7 @@ export async function POST(request: Request) {
         <p><strong>Customer:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>WhatsApp:</strong> ${whatsapp}</p>
+        <p><strong>Address:</strong> ${address || 'N/A'}</p>
         <p><strong>Payment Method:</strong> ${paymentMethod.toUpperCase()}</p>
         <p><strong>Date:</strong> ${new Date().toLocaleString()}</p>
         
@@ -60,6 +61,7 @@ export async function POST(request: Request) {
     const { data, error } = await resend.emails.send({
       from: 'Bulk Vapes Orders <onboarding@resend.dev>', // Update this domain once verified in Resend dashboard
       to: ['syedareebali795@gmail.com'], 
+      replyTo: email, // This enables direct reply to customer
       subject: `New Order: ${name} - $${total.toFixed(2)}`,
       html: htmlContent,
     });

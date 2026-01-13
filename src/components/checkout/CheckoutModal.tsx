@@ -13,6 +13,7 @@ export default function CheckoutModal({ onClose }: CheckoutModalProps) {
     name: '',
     email: '',
     whatsapp: '',
+    address: '',
     paymentMethod: 'bitcoin',
   });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -21,7 +22,7 @@ export default function CheckoutModal({ onClose }: CheckoutModalProps) {
   const total = items.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
   const dispatch = useDispatch();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -33,7 +34,7 @@ export default function CheckoutModal({ onClose }: CheckoutModalProps) {
         const response = await fetch('/api/send-order', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ ...formData, items, total })
+            body: JSON.stringify({ ...formData, items, total }) // formData now includes address
         });
 
         if (response.ok) {
@@ -109,6 +110,18 @@ export default function CheckoutModal({ onClose }: CheckoutModalProps) {
                         className="w-full px-4 py-3 rounded-xl border border-[#aec3b0] focus:ring-2 focus:ring-[#124559] focus:border-[#124559] outline-none bg-white text-[#01161e]"
                     />
                  </div>
+            </div>
+
+            <div className="mb-6">
+                <label className="block text-sm font-bold text-[#01161e] mb-2">Delivery Address</label>
+                <textarea
+                    required
+                    rows={3}
+                    name="address"
+                    value={formData.address}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 rounded-xl border border-[#aec3b0] focus:ring-2 focus:ring-[#124559] focus:border-[#124559] outline-none bg-white text-[#01161e] resize-none"
+                ></textarea>
             </div>
 
             <div className="mb-6">
