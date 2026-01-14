@@ -31,11 +31,10 @@ export default function ProductCard({ product }: ProductCardProps) {
           fill
           className="object-contain p-6 group-hover:scale-110 transition-transform duration-500"
         />
-        {product.wholesalePrice > 0 && (
-             <div className="absolute top-4 left-4 bg-[#124559] text-[#eff6e0] text-[10px] font-bold px-3 py-1.5 rounded shadow-sm uppercase tracking-wide z-10">
-                Wholesale
-            </div>
-        )}
+        {/* Badge Removed */ }
+        <div className="absolute top-4 right-4 bg-green-500 text-white text-[10px] font-bold px-3 py-1.5 rounded shadow-sm uppercase tracking-wide z-10 animate-pulse">
+            10% Crypto Off
+        </div>
       </div>
       
       {/* Content Container */}
@@ -61,9 +60,9 @@ export default function ProductCard({ product }: ProductCardProps) {
                 </div>
                 <span className="text-xl font-black text-[#01161e]">${product.price.toFixed(2)}</span>
              </div>
-             {product.wholesaleMinQty > 0 && (
+             {/* {product.wholesaleMinQty > 0 && (
                 <span className="text-xs text-[#598392] font-medium">Min: {product.wholesaleMinQty}</span>
-             )}
+             )} */}
         </div>
 
         {/* Add to Cart Button */}

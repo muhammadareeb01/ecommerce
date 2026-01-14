@@ -1,22 +1,50 @@
-import InfoPageLayout from '@/components/layout/InfoPageLayout';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Terms and Conditions | Bulk Vapes USA',
+  description: 'Read our terms and conditions for wholesale orders and usage.',
+};
 
 export default function TermsPage() {
   return (
-    <InfoPageLayout title="Terms & Conditions" subtitle="Please read these terms carefully before using our services.">
-        <h3>1. Agreement to Terms</h3>
-        <p>By accessing our website and placing orders, you agree to be bound by these Terms and Conditions. If you disagree with any part of these terms, you may not access the service.</p>
+    <div className="bg-[#eff6e0] min-h-screen py-16 px-4 sm:px-8 font-sans">
+      <div className="max-w-4xl mx-auto bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-[#aec3b0]/50 text-[#01161e]">
+        <h1 className="text-4xl font-black mb-8 text-[#124559]">Terms and Conditions</h1>
         
-        <h3>2. Wholesale Account Policy</h3>
-        <p>We sell strictly to retailers, distributors, and wholesalers. We reserve the right to request business verification documents such as a Resale Certificate or Tax ID before processing any orders.</p>
+        <div className="space-y-6 text-[#598392] leading-relaxed">
+            <p><strong>Last Updated: January 2026</strong></p>
+            
+            <section>
+                <h2 className="text-xl font-bold text-[#01161e] mb-2">1. Introduction</h2>
+                <p>Welcome to Bulk Vapes USA. By accessing our website and placing wholesale orders, you agree to be bound by these Terms and Conditions.</p>
+            </section>
 
-        <h3>3. Product Use and Safety</h3>
-        <p>Our products contain nicotine, an addictive chemical. By purchasing, you certify that you are of legal smoking age in your jurisdiction (21+ in the USA). You agree not to resell these products to minors.</p>
+            <section>
+                <h2 className="text-xl font-bold text-[#01161e] mb-2">2. Wholesale Requirements</h2>
+                <p>We sell strictly B2B (Business to Business). You must be of legal age (21+) and possess a valid tobacco resale license where required by your local jurisdiction.</p>
+            </section>
 
-        <h3>4. Order Acceptance</h3>
-        <p>We reserve the right to refuse or cancel your order at any time for reasons including but not limited to: product availability, errors in the description or price of the product, or error in your order.</p>
+            <section>
+                <h2 className="text-xl font-bold text-[#01161e] mb-2">3. Minimum Order Quantity (MOQ)</h2>
+                <p>Our minimum order value is $500. Orders below this amount may be cancelled or subject to a surcharge. Unit minimums apply per SKU.</p>
+            </section>
 
-        <h3>5. Limitation of Liability</h3>
-        <p>In no event shall Bulk Vapes USA, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages.</p>
-    </InfoPageLayout>
+            <section>
+                <h2 className="text-xl font-bold text-[#01161e] mb-2">4. Payment Terms</h2>
+                <p>We accept Bank Wire, ACH, and Cryptocurrency (BTC, ETH, USDT). Crypto payments receive a 10% discount. Orders are processed only after funds have cleared.</p>
+            </section>
+
+            <section>
+                <h2 className="text-xl font-bold text-[#01161e] mb-2">5. Shipping & Risk of Loss</h2>
+                <p>All shipments are FOB Origin. Risk of loss passes to the buyer upon tender to the carrier. We are not responsible for packages seized by customs or local authorities due to non-compliance.</p>
+            </section>
+
+             <section>
+                <h2 className="text-xl font-bold text-[#01161e] mb-2">6. Compliance</h2>
+                <p>Buyer is solely responsible for compliance with all local, state, and federal laws regarding the sale and distribution of vaping products.</p>
+            </section>
+        </div>
+      </div>
+    </div>
   );
 }

@@ -1,22 +1,38 @@
-import InfoPageLayout from '@/components/layout/InfoPageLayout';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy | Bulk Vapes USA',
+  description: 'How we collect, use, and protect your data.',
+};
 
 export default function PrivacyPage() {
   return (
-    <InfoPageLayout title="Privacy Policy" subtitle="Your privacy is critically important to us.">
-        <h3>1. Information We Collect</h3>
-        <p>We collect information you provide directly to us, such as when you create an account, place an order, or subscribe to our newsletter. This includes name, email, shipping address, and payment information.</p>
+    <div className="bg-[#eff6e0] min-h-screen py-16 px-4 sm:px-8 font-sans">
+      <div className="max-w-4xl mx-auto bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-[#aec3b0]/50 text-[#01161e]">
+        <h1 className="text-4xl font-black mb-8 text-[#124559]">Privacy Policy</h1>
         
-        <h3>2. How We Use Your Information</h3>
-        <p>We use the information we collect to process your orders, communicate with you, screening for potential risk or fraud, and improve our services.</p>
+        <div className="space-y-6 text-[#598392] leading-relaxed">
+            <section>
+                <h2 className="text-xl font-bold text-[#01161e] mb-2">Data Collection</h2>
+                <p>We collect information necessary to process your wholesale orders, including name, business address, email, and tax ID information. We do not sell your personal data to third parties.</p>
+            </section>
 
-        <h3>3. Sharing of Information</h3>
-        <p>We do not sell your personal data. We may share your information with third-party service providers (like payment processors and shipping partners) to fulfill your orders.</p>
+            <section>
+                <h2 className="text-xl font-bold text-[#01161e] mb-2">Payment Security</h2>
+                <p>We do not store full credit card numbers or crypto wallet private keys. All transactions are securely processed through encrypted channels.</p>
+            </section>
 
-        <h3>4. Security</h3>
-        <p>We take reasonable measures to help protect information about you from loss, theft, misuse and unauthorized access, disclosure, alteration and destruction.</p>
+            <section>
+                <h2 className="text-xl font-bold text-[#01161e] mb-2">Cookies</h2>
+                <p>We use cookies to improve your browsing experience and remember your cart contents. You may disable cookies in your browser settings, but some site features may not function correctly.</p>
+            </section>
 
-        <h3>5. Cookies</h3>
-        <p>We use cookies to improve your experience on our site. By using our site, you consent to our use of cookies.</p>
-    </InfoPageLayout>
+            <section>
+                <h2 className="text-xl font-bold text-[#01161e] mb-2">Age Verification</h2>
+                <p>We may use third-party services to verify the age and identity of our customers to ensure compliance with federal regulations.</p>
+            </section>
+        </div>
+      </div>
+    </div>
   );
 }

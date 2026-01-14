@@ -1,22 +1,38 @@
-import InfoPageLayout from '@/components/layout/InfoPageLayout';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Compliance & Legality | Bulk Vapes USA',
+  description: 'Information regarding PACT Act, Taxes, and Regulatory Compliance.',
+};
 
 export default function CompliancePage() {
   return (
-    <InfoPageLayout title="Compliance & Legality" subtitle="Adhering to regulatory standards.">
-        <h3>PMTA Compliance</h3>
-        <p>We are committed to selling only products that are compliant with FDA Pre-Market Tobacco Product Applications (PMTA). We work closely with manufacturers to ensure all inventory meets current regulatory requirements.</p>
+    <div className="bg-[#eff6e0] min-h-screen py-16 px-4 sm:px-8 font-sans">
+      <div className="max-w-4xl mx-auto bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-[#aec3b0]/50 text-[#01161e]">
+        <h1 className="text-4xl font-black mb-8 text-[#124559]">Compliance & Legality</h1>
         
-        <h3>State & Local Laws</h3>
-        <p>Vaping laws vary significantly by state and municipality. We automatically restrict shipping to states/cities with flavor bans or total vape bans based on your shipping address. It is the buyer's responsibility to understand their local regulations.</p>
+        <div className="space-y-6 text-[#598392] leading-relaxed">
+            <section>
+                <h2 className="text-xl font-bold text-[#01161e] mb-2">PACT Act Compliance</h2>
+                <p>We comply with all Prevent All Cigarette Trafficking (PACT) Act regulations. This includes registering with the ATF and submitting monthly reports to state tax administrators.</p>
+            </section>
 
-        <h3>PACT Act</h3>
-        <p>We comply fully with the PACT Act (Prevent All Cigarette Trafficking Act). This includes:</p>
-        <ul>
-            <li>Registering with the ATF.</li>
-            <li>Verifying customer age.</li>
-            <li>Using delivery services that check ID upon delivery.</li>
-            <li>Collecting and remitting all applicable excise taxes.</li>
-        </ul>
-    </InfoPageLayout>
+            <section>
+                <h2 className="text-xl font-bold text-[#01161e] mb-2">Tax Responsibilities</h2>
+                <p>As a wholesale distributor, we do not collect excise tax on B2B transactions where the buyer holds a valid license. The buyer is responsible for reporting and paying all applicable state and local excise taxes unless otherwise specified.</p>
+            </section>
+
+            <section>
+                <h2 className="text-xl font-bold text-[#01161e] mb-2">FDA Regulations</h2>
+                <p>We only distribute products that comply with FDA PMTA (Premarket Tobacco Product Application) guidelines or are currently under enforcement discretion.</p>
+            </section>
+
+            <section>
+                <h2 className="text-xl font-bold text-[#01161e] mb-2">Shipping Restrictions</h2>
+                <p>We do not ship to states or localities where the sale of flavored vaping products is prohibited by law. It is the buyer's responsibility to know their local regulations.</p>
+            </section>
+        </div>
+      </div>
+    </div>
   );
 }

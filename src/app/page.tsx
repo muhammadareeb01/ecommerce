@@ -2,6 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Section } from '@/components/ui/Section';
 import ProductCard from '@/components/ui/ProductCard';
+import CategoriesSection from '@/components/layout/CategoriesSection';
+import HomeFaq from '@/components/ui/HomeFaq';
 import { PRODUCTS, HERO_CONTENT, REVIEWS } from '@/data/mockData';
 
 export default function Home() {
@@ -41,10 +43,10 @@ export default function Home() {
                     {HERO_CONTENT.subheadline}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-5">
-                    <Link href="/categories" className="px-10 py-4 bg-[#124559] text-[#eff6e0] font-bold rounded-2xl hover:bg-[#598392] transition-all shadow-xl shadow-[#01161e]/50 text-center text-lg transform hover:-translate-y-1">
+                    <Link href="/wholesale" className="px-10 py-4 bg-[#124559] text-[#eff6e0] font-bold rounded-2xl hover:bg-[#598392] transition-all shadow-xl shadow-[#01161e]/50 text-center text-lg transform hover:-translate-y-1">
                         {HERO_CONTENT.ctaPrimary}
                     </Link>
-                    <Link href="/wholesale" className="px-10 py-4 bg-[#eff6e0]/10 backdrop-blur-sm border border-[#eff6e0]/20 text-[#eff6e0] font-bold rounded-2xl hover:bg-[#eff6e0]/20 transition-all text-center text-lg">
+                    <Link href="/products" className="px-10 py-4 bg-[#eff6e0]/10 backdrop-blur-sm border border-[#eff6e0]/20 text-[#eff6e0] font-bold rounded-2xl hover:bg-[#eff6e0]/20 transition-all text-center text-lg">
                         {HERO_CONTENT.ctaSecondary}
                     </Link>
                 </div>
@@ -63,8 +65,11 @@ export default function Home() {
         </div>
       </div>
 
+      {/* 1.5 CATEGORIES SECTION (New Stylish Grid) */}
+      <CategoriesSection />
+
       {/* 2. BENEFITS SECTION (Clean Grid) */}
-      <div className="bg-[#eff6e0] py-24 mb-12 rounded-b-[3rem] shadow-xl shadow-[#01161e]/5 relative z-10 border-b border-[#aec3b0]">
+      <div className="bg-[#eff6e0] py-24 mb-12 shadow-xl shadow-[#01161e]/5 relative z-10 border-b border-[#aec3b0]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-16">
                 <span className="text-[#124559] font-bold uppercase tracking-wider text-sm">Why Choose Us</span>
@@ -75,7 +80,7 @@ export default function Home() {
                 {[
                     { icon: 'M13 10V3L4 14h7v7l9-11h-7z', title: 'Lightning Fast Speed', desc: 'Orders processed within 24 hours. Priority shipping available for wholesale partners.' },
                     { icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', title: 'Authenticity Guaranteed', desc: 'We source directly from manufacturers. 100% genuine products, every time.' },
-                    { icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z', title: 'Crypto Discounts', desc: 'Save 5% instantly when you pay with Bitcoin, Ethereum, or USDT.' }
+                    { icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z', title: 'Crypto Discounts', desc: 'Save 10% instantly when you pay with Bitcoin, Ethereum, or USDT.' }
                 ].map((item, idx) => (
                     <div key={idx} className="bg-[#eff6e0] rounded-3xl p-8 hover:shadow-xl transition-all duration-300 border-2 border-[#aec3b0] hover:border-[#598392] hover:-translate-y-2">
                         <div className="w-16 h-16 bg-[#124559]/10 rounded-2xl flex items-center justify-center mb-6 text-[#124559]">
@@ -95,12 +100,12 @@ export default function Home() {
 
       {/* FEATURED PRODUCTS (Moved below proof for flow) */}
        <section className="py-12 md:py-20 w-full mb-12">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4 px-4 max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4 px-4  mx-auto">
             <div>
-                <span className="text-[#124559] font-bold uppercase tracking-wider text-sm">Best Sellers</span>
-                <h2 className="text-3xl md:text-5xl font-black text-[#01161e] mt-3 tracking-tight">Trending Products</h2>
+                <span className="text-[#124559] font-bold uppercase tracking-wider text-sm px-10">Best Sellers</span>
+                <h2 className="text-3xl md:text-5xl font-black text-[#01161e] mt-3 tracking-tight px-10">Trending Products</h2>
             </div>
-            <Link href="/categories" className="px-8 py-3 bg-[#01161e] text-[#eff6e0] font-bold rounded-xl hover:bg-[#124559] transition-all shadow-lg hover:shadow-xl">
+            <Link href="/categories" className="px-8 mx-4  py-3 bg-[#01161e] text-[#eff6e0] font-bold rounded-xl hover:bg-[#124559] transition-all shadow-lg hover:shadow-xl">
                 View Full Catalog
             </Link>
         </div>
@@ -151,6 +156,9 @@ export default function Home() {
             ))}
         </div>
       </Section>
+
+      {/* 3.5 FAQ PREVIEW (New) */}
+      <HomeFaq />
 
       {/* 4. CTA SECTION (Modern Upgrade) */}
       <section className="py-20 px-4">

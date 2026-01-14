@@ -29,7 +29,7 @@ export const cartSlice = createSlice({
       } else {
         state.items.push({ product, quantity });
       }
-      state.isOpen = true; // Open cart when item added
+      // state.isOpen = true; // Removed auto-open behavior
     },
     removeFromCart: (state, action: PayloadAction<string>) => {
       state.items = state.items.filter(item => item.product.id !== action.payload);

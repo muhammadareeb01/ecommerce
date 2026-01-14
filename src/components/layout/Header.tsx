@@ -17,6 +17,8 @@ export default function Header() {
 
   const navigation = [
     { name: 'Home', href: '/' },
+    
+    { name: 'Products', href: '/products' },
     { name: 'Categories', href: '/categories' },
     { name: 'Wholesale', href: '/wholesale' },
     { name: 'FAQ', href: '/faq' },
@@ -25,17 +27,17 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-[#eff6e0]/90 backdrop-blur-md border-b border-[#aec3b0]/30 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className=" mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          {/* Logo */}
-          <div className="flex-shrink-0 flex items-center">
+          {/* Logo (Left) */}
+          <div className="flex-1 flex items-center justify-start">
             <Link href="/" className="text-3xl font-black tracking-tighter text-[#01161e] flex items-center gap-1">
               BULK<span className="text-[#124559]">VAPES</span>
             </Link>
           </div>
 
-          {/* Desktop Menu */}
-          <nav className="hidden md:flex space-x-8 items-center">
+          {/* Desktop Menu (Center) */}
+          <nav className="hidden md:flex items-center justify-center space-x-8">
             {navigation.map((item) => {
               const isActive = pathname === item.href;
               return (
@@ -54,7 +56,8 @@ export default function Header() {
             })}
           </nav>
 
-          <div className="flex items-center gap-4">
+          {/* Right Actions (Cart + Mobile Menu) */}
+          <div className="flex-1 flex items-center justify-end gap-4">
              {/* Cart Icon */}
              <div className="relative">
                 <button 

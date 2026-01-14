@@ -1,103 +1,97 @@
 import Link from 'next/link';
-import { Section } from '@/components/ui/Section';
+
+export const metadata = {
+  title: 'Wholesale Information | Bulk Vapes USA',
+  description: 'Learn about our wholesale process, MOQs, and shipping policies.',
+};
 
 export default function WholesalePage() {
   return (
-    <div className="min-h-screen bg-[#eff6e0] font-sans">
-      
-      {/* Hero Banner */}
-      <div className="bg-[#01161e] text-[#eff6e0] py-24 relative overflow-hidden rounded-b-[4rem] shadow-2xl">
-         <div className="absolute top-0 right-0 w-full h-full opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
-         {/* Glow effects */}
-         <div className="absolute top-10 left-10 w-64 h-64 bg-[#124559] rounded-full blur-[100px] opacity-40"></div>
-         <div className="absolute bottom-10 right-10 w-64 h-64 bg-[#aec3b0] rounded-full blur-[100px] opacity-20"></div>
-
-         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <span className="text-[#aec3b0] font-bold uppercase tracking-[0.2em] mb-4 block">B2B Partners Only</span>
-            <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight text-[#eff6e0]">
-              Wholesale <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#aec3b0] to-[#598392]">Program</span>
+    <div className="bg-[#eff6e0] min-h-screen py-16 px-4 sm:px-8 font-sans">
+      <div className="max-w-4xl mx-auto">
+        
+        {/* Header */}
+        <div className="text-center mb-16">
+            <span className="text-[#124559] font-bold uppercase tracking-wider text-sm">Partner Program</span>
+            <h1 className="text-4xl md:text-5xl font-black text-[#01161e] mt-2 mb-6">
+                Wholesale Made Simple
             </h1>
-            <p className="text-xl text-[#598392] max-w-2xl mx-auto leading-relaxed">
-              Unlock tiered pricing, priority shipping, and exclusive access to the hottest vape products on the market.
+            <p className="text-xl text-[#598392] leading-relaxed max-w-2xl mx-auto">
+                We streamline the sourcing process so you can focus on growing your retail business. No hidden fees, just great margins.
             </p>
-         </div>
-      </div>
+        </div>
 
-      <Section className="px-4">
-        {/* Benefits Grid */}
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 -mt-16 relative z-20">
+        {/* Process Steps */}
+        <div className="grid gap-12 mb-20 relative">
+            <div className="absolute left-8 top-8 bottom-8 w-1 bg-[#aec3b0]/30 hidden md:block"></div>
+            
             {[
-                { title: "Tiered Pricing", desc: "Unlock deeper discounts as your order volume grows.", icon: "$" },
-                { title: "Priority Support", desc: "Dedicated account manager available via WhatsApp.", icon: "★" },
-                { title: "Fast Shipping", desc: "Same-day dispatch for orders placed before 2PM EST.", icon: "✈" },
-                { title: "Low MOQs", desc: "Start small with just $500 minimum order value.", icon: "📉" },
-            ].map((item, i) => (
-                <div key={i} className="bg-[#eff6e0] border-2 border-[#aec3b0] p-8 rounded-3xl shadow-xl hover:-translate-y-2 transition-transform duration-300">
-                    <div className="w-12 h-12 bg-[#124559] rounded-xl flex items-center justify-center text-[#eff6e0] text-2xl font-bold mb-4 shadow-lg">
-                        {item.icon}
-                    </div>
-                    <h3 className="text-xl font-bold text-[#01161e] mb-2">{item.title}</h3>
-                    <p className="text-[#598392] text-sm font-medium">{item.desc}</p>
+                { step: '01', title: 'Browse Catalog', desc: 'Explore our extensive range of top-tier vape products. Filtering by THC, Nicotine, or CBD to find exactly what your customers want.' },
+                { step: '02', title: 'No Account Needed', desc: 'Add items directly to your cart. We do not require a lengthy signup process. Just browse and build your order.' },
+                { step: '03', title: 'Submit Request', desc: 'Head to checkout and submit your order request. You can choose to pay via Crypto (10% off) or Bank Wire.' },
+                { step: '04', title: 'We Contact You', desc: 'Our team will review your order details and contact you via Email or WhatsApp to finalize payment and shipping.' }
+            ].map((item, idx) => (
+                <div key={idx} className="relative flex flex-col md:flex-row gap-6 md:gap-12 items-start group">
+                     <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-[#124559] text-[#eff6e0] flex items-center justify-center font-black text-2xl shadow-lg shadow-[#124559]/20 z-10 border-4 border-[#eff6e0]">
+                        {item.step}
+                     </div>
+                     <div className="bg-white p-8 rounded-3xl border border-[#aec3b0]/50 shadow-sm flex-grow group-hover:shadow-md transition-shadow">
+                        <h3 className="text-2xl font-bold text-[#01161e] mb-3">{item.title}</h3>
+                        <p className="text-[#598392] leading-relaxed">{item.desc}</p>
+                     </div>
                 </div>
             ))}
         </div>
 
-        {/* MOQ Table Section */}
-        <div className="max-w-4xl mx-auto mt-24">
-            <div className="text-center mb-12">
-                <h2 className="text-3xl font-black text-[#01161e] mb-4">Minimum Order Quantities (MOQ)</h2>
-                <p className="text-[#598392]">Transparent requirements for our wholesale partners.</p>
+        {/* Info Cards (MOQ & Shipping) */}
+        <div className="grid md:grid-cols-2 gap-8 mb-16">
+            <div className="bg-[#01161e] text-[#eff6e0] p-10 rounded-[2.5rem] relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#124559] rounded-full blur-3xl translate-x-10 -translate-y-10"></div>
+                <h3 className="text-2xl font-black mb-4 relative z-10">Minimum Order (MOQ)</h3>
+                <ul className="space-y-4 text-[#aec3b0] relative z-10 font-medium">
+                    <li className="flex items-start gap-3">
+                        <svg className="w-6 h-6 text-[#eff6e0] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                        <span>$500 Minimum Order Value</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                        <svg className="w-6 h-6 text-[#eff6e0] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                        <span>10 Units Per SKU (Mix & Match allowed for samples)</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                        <svg className="w-6 h-6 text-[#eff6e0] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                        <span>Must provide valid Business ID for tax verification (handled after checkout).</span>
+                    </li>
+                </ul>
             </div>
-            
-            <div className="bg-white rounded-[2rem] shadow-xl overflow-hidden border border-[#aec3b0]/50">
-                <table className="w-full text-left border-collapse">
-                    <thead>
-                        <tr className="bg-[#124559] text-[#eff6e0]">
-                            <th className="p-6 font-bold uppercase text-sm tracking-wider">Product Category</th>
-                            <th className="p-6 font-bold uppercase text-sm tracking-wider">Min Qty</th>
-                            <th className="p-6 font-bold uppercase text-sm tracking-wider hidden sm:table-cell">Notes</th>
-                        </tr>
-                    </thead>
-                    <tbody className="divide-y divide-[#aec3b0]/30">
-                        {[
-                            { cat: "Disposable Vapes", qty: "50 Units", note: "Mix & Match flavors allowed (min 10 per flavor)" },
-                            { cat: "E-Liquids", qty: "20 Bottles", note: "Minimum 5 per strength/flavor" },
-                            { cat: "Pod Systems", qty: "10 Kits", note: "Includes 1 pack of replacement pods per kit" },
-                            { cat: "Coils / Pods", qty: "10 Packs", note: "Sold in display boxes only" },
-                        ].map((row, idx) => (
-                            <tr key={idx} className="hover:bg-[#eff6e0]/50 transition-colors">
-                                <td className="p-6 font-bold text-[#01161e]">{row.cat}</td>
-                                <td className="p-6 text-[#124559] font-bold">{row.qty}</td>
-                                <td className="p-6 text-[#598392] text-sm hidden sm:table-cell">{row.note}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-                 <div className="p-6 bg-[#eff6e0] border-t border-[#aec3b0]/30 text-center">
-                    <p className="text-[#01161e] font-bold">
-                        Total Order Value Minimum: <span className="text-[#124559]">$500.00</span>
-                    </p>
-                </div>
+
+            <div className="bg-[#eff6e0] border-2 border-[#124559] p-10 rounded-[2.5rem]">
+                 <h3 className="text-2xl font-black text-[#01161e] mb-4">Shipping & Returns</h3>
+                 <ul className="space-y-4 text-[#598392] font-medium">
+                    <li className="flex items-start gap-3">
+                        <svg className="w-6 h-6 text-[#124559] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span>Free Shipping on orders over $2,000 (US Only).</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                        <svg className="w-6 h-6 text-[#124559] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span>Orders process within 24-48 hours.</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                        <svg className="w-6 h-6 text-[#124559] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span>Damaged items must be reported within 48 hours of delivery for full credit.</span>
+                    </li>
+                </ul>
             </div>
         </div>
 
-        {/* Call to Action */}
-        <div className="text-center mt-20 mb-10">
-            <div className="inline-block p-1 bg-gradient-to-r from-[#124559] to-[#aec3b0] rounded-2xl">
-                 <div className="bg-[#eff6e0] rounded-[14px] p-8 md:p-12">
-                    <h2 className="text-3xl md:text-4xl font-black text-[#01161e] mb-6">Ready to Partner?</h2>
-                    <p className="text-[#598392] max-w-lg mx-auto mb-8">
-                        Browse our catalog and start adding items to your cart. 
-                        The checkout process handles the rest.
-                    </p>
-                    <Link href="/categories" className="inline-flex items-center justify-center px-10 py-4 text-lg font-bold text-[#eff6e0] transition-all duration-200 bg-[#124559] rounded-xl hover:bg-[#01161e] shadow-lg hover:shadow-xl hover:-translate-y-1">
-                        Start Your Order
-                    </Link>
-                 </div>
-            </div>
+        {/* CTA */}
+        <div className="text-center">
+             <Link href="/products" className="inline-block px-12 py-5 bg-[#124559] text-[#eff6e0] font-black rounded-2xl hover:bg-[#01161e] transition-all shadow-xl hover:-translate-y-1 text-lg">
+                Start My Order
+            </Link>
+             <p className="mt-4 text-[#598392] text-sm font-bold">Have questions? <Link href="/contact" className="underline hover:text-[#124559]">Contact Support</Link></p>
         </div>
 
-      </Section>
+      </div>
     </div>
   );
 }
