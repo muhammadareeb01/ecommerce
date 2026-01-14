@@ -125,9 +125,11 @@ export default function StorePage() {
 
         {/* PRODUCTS GRID */}
         {filteredProducts.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-4 max-w-7xl mx-auto pb-20">
+            <div className="flex flex-wrap justify-center gap-8 px-4 max-w-7xl mx-auto pb-20">
                 {filteredProducts.map((product) => (
-                    <ProductCard key={product.id} product={product} />
+                    <div key={product.id} className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.4rem)]">
+                        <ProductCard product={product} />
+                    </div>
                 ))}
             </div>
         ) : (

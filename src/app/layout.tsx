@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import 'react-toastify/dist/ReactToastify.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { ReduxProvider } from '@/components/providers/ReduxProvider';
+import { ToastContainer } from 'react-toastify';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -26,6 +28,7 @@ export default function RootLayout({
             {children}
             </main>
             <Footer />
+            <ToastContainer />
         </ReduxProvider>
       </body>
     </html>

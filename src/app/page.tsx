@@ -94,8 +94,8 @@ export default function Home() {
  
 
       {/* FEATURED PRODUCTS (Moved below proof for flow) */}
-       <Section>
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4 px-4">
+       <section className="py-12 md:py-20 w-full mb-12">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4 px-4 max-w-7xl mx-auto">
             <div>
                 <span className="text-[#124559] font-bold uppercase tracking-wider text-sm">Best Sellers</span>
                 <h2 className="text-3xl md:text-5xl font-black text-[#01161e] mt-3 tracking-tight">Trending Products</h2>
@@ -104,12 +104,17 @@ export default function Home() {
                 View Full Catalog
             </Link>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-4 max-w-7xl mx-auto">
+        <div className="flex flex-wrap justify-center gap-8 px-4 w-full">
             {featuredProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
+                <div 
+                    key={product.id} 
+                    className="w-full sm:w-[calc(50%-2rem)] lg:w-[calc(20%-2rem)]"
+                >
+                    <ProductCard product={product} />
+                </div>
             ))}
         </div>
-          </Section>
+          </section>
           
 
 

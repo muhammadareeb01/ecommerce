@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import { RootState } from '@/store/store';
 import { clearCart } from '@/store/features/cartSlice';
 
@@ -40,6 +41,7 @@ export default function CheckoutModal({ onClose }: CheckoutModalProps) {
         if (response.ok) {
             setStatus('success');
             dispatch(clearCart());
+            toast.success("Order received! check your email.");
         } else {
             setStatus('error');
         }

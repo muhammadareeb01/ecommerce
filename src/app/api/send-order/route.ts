@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
 // Initialize Resend
-const resend = new Resend(process.env.RESEND_API_KEY || 're_GYTGjk2U_N1LUK5nFR6UBve4B8UEcZzrZ'); 
+const resend = new Resend(process.env.RESEND_API_KEY); 
 
 export async function POST(request: Request) {
   try {
@@ -52,10 +52,15 @@ export async function POST(request: Request) {
       </div>
     `;
 
-    // Send Email (Mock success if no API key is actually present in env to prevent crash)
+    // Check for API Key
     if (!process.env.RESEND_API_KEY) {
-        console.log('DEV: Mock Sending Email to syedareebali795@gmail.com:', htmlContent);
-        return NextResponse.json({ success: true, message: 'Mock Email Sent' });
+        if (process.env.NODE_ENV === 'development') {
+            console.log('DEV: Mock Sending Email to syedareebali795@gmail.com:', htmlContent);
+            return NextResponse.json({ success: true, message: 'Mock Email Sent (Dev Mode)' });
+        } else {
+            console.error('SERVER ERROR: Missing RESEND_API_KEY in Production');
+            return NextResponse.json({ success: false, error: 'Configuration Error: Missing Email API Key' }, { status: 500 });
+        }
     }
 
     const { data, error } = await resend.emails.send({
