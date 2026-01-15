@@ -7,7 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import CheckoutModal from '@/components/checkout/CheckoutModal';
 
-type PaymentMethod = 'bitcoin' | 'ethereum' | 'usdt' | 'bank' | 'wire';
+type PaymentMethod = 'bitcoin' | 'ethereum' | 'usdt' | 'bank' | 'wire' | 'uk_bank' | 'revolut' | 'paypal' | 'cashapp' | 'apple_pay';
 
 export default function CartPage() {
   const { items } = useSelector((state: RootState) => state.cart);
@@ -19,7 +19,13 @@ export default function CartPage() {
   
   // Calculate discount based on payment method
   const isCrypto = ['bitcoin', 'ethereum', 'usdt'].includes(selectedPayment);
-  const discount = isCrypto ? subtotal * 0.10 : 0;
+  const isRevolut = selectedPayment === 'revolut';
+  
+  let discountRate = 0;
+  if (isCrypto) discountRate = 0.10;
+  else if (isRevolut) discountRate = 0.05;
+
+  const discount = subtotal * discountRate;
   const total = subtotal - discount;
 
   if (items.length === 0) {
@@ -193,20 +199,22 @@ export default function CartPage() {
                     <h4 className="font-bold text-[#124559] uppercase text-sm tracking-wider">Other Payment Methods</h4>
                   </div>
                   <div className="space-y-2 pl-2">
+                    
+                    {/* UK Bank */}
                     <button
-                      onClick={() => setSelectedPayment('bank')}
+                      onClick={() => setSelectedPayment('uk_bank')}
                       className={`w-full p-3 rounded-xl border-2 transition-all text-left ${
-                        selectedPayment === 'bank'
+                        selectedPayment === 'uk_bank'
                           ? 'border-[#124559] bg-[#124559]/5'
                           : 'border-[#aec3b0] hover:border-[#124559]/50'
                       }`}
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
-                          <span className="text-xl">🏦</span>
-                          <span className="font-bold text-[#01161e]">Bank Transfer</span>
+                          <span className="text-xl">🇬🇧</span>
+                          <span className="font-bold text-[#01161e]">UK Bank Transfer</span>
                         </div>
-                        {selectedPayment === 'bank' && (
+                        {selectedPayment === 'uk_bank' && (
                           <svg className="w-5 h-5 text-[#124559]" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
                           </svg>
@@ -214,26 +222,97 @@ export default function CartPage() {
                       </div>
                     </button>
 
+                    {/* Revolut */}
                     <button
-                      onClick={() => setSelectedPayment('wire')}
+                      onClick={() => setSelectedPayment('revolut')}
                       className={`w-full p-3 rounded-xl border-2 transition-all text-left ${
-                        selectedPayment === 'wire'
+                        selectedPayment === 'revolut'
                           ? 'border-[#124559] bg-[#124559]/5'
                           : 'border-[#aec3b0] hover:border-[#124559]/50'
                       }`}
                     >
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <span className="text-xl">💳</span>
-                          <span className="font-bold text-[#01161e]">Wire Transfer</span>
+                         <div className="flex items-center gap-3">
+                          <span className="text-xl">🇷</span>
+                          <div>
+                             <span className="font-bold text-[#01161e]">Revolut Card/Crypto</span>
+                             <span className="ml-2 text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-bold">-5%</span>
+                          </div>
                         </div>
-                        {selectedPayment === 'wire' && (
+                        {selectedPayment === 'revolut' && (
                           <svg className="w-5 h-5 text-[#124559]" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
                           </svg>
                         )}
                       </div>
                     </button>
+
+                     {/* PayPal */}
+                    <button
+                      onClick={() => setSelectedPayment('paypal')}
+                      className={`w-full p-3 rounded-xl border-2 transition-all text-left ${
+                        selectedPayment === 'paypal'
+                          ? 'border-[#124559] bg-[#124559]/5'
+                          : 'border-[#aec3b0] hover:border-[#124559]/50'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <span className="text-xl">🅿️</span>
+                          <span className="font-bold text-[#01161e]">PayPal</span>
+                        </div>
+                        {selectedPayment === 'paypal' && (
+                          <svg className="w-5 h-5 text-[#124559]" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+                          </svg>
+                        )}
+                      </div>
+                    </button>
+
+                    {/* Cashapp */}
+                    <button
+                      onClick={() => setSelectedPayment('cashapp')}
+                      className={`w-full p-3 rounded-xl border-2 transition-all text-left ${
+                        selectedPayment === 'cashapp'
+                          ? 'border-[#124559] bg-[#124559]/5'
+                          : 'border-[#aec3b0] hover:border-[#124559]/50'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <span className="text-xl">💵</span>
+                          <span className="font-bold text-[#01161e]">CashApp</span>
+                        </div>
+                        {selectedPayment === 'cashapp' && (
+                          <svg className="w-5 h-5 text-[#124559]" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+                          </svg>
+                        )}
+                      </div>
+                    </button>
+
+                     {/* USA Apple Pay */}
+                    <button
+                      onClick={() => setSelectedPayment('apple_pay')}
+                      className={`w-full p-3 rounded-xl border-2 transition-all text-left ${
+                        selectedPayment === 'apple_pay'
+                          ? 'border-[#124559] bg-[#124559]/5'
+                          : 'border-[#aec3b0] hover:border-[#124559]/50'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <span className="text-xl">🍎</span>
+                          <span className="font-bold text-[#01161e]">USA Apple Pay</span>
+                        </div>
+                        {selectedPayment === 'apple_pay' && (
+                          <svg className="w-5 h-5 text-[#124559]" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+                          </svg>
+                        )}
+                      </div>
+                    </button>
+
                   </div>
                 </div>
 
@@ -247,13 +326,13 @@ export default function CartPage() {
               <div className="space-y-3 mb-6">
                 <div className="flex justify-between text-[#598392]">
                   <span>Subtotal</span>
-                  <span className={isCrypto ? 'line-through' : 'font-bold text-[#01161e]'}>${subtotal.toFixed(2)}</span>
+                  <span className={(isCrypto || isRevolut) ? 'line-through' : 'font-bold text-[#01161e]'}>${subtotal.toFixed(2)}</span>
                 </div>
                 
-                {isCrypto && (
+                {(isCrypto || isRevolut) && (
                   <>
                     <div className="flex justify-between text-green-600 font-bold animate-in fade-in slide-in-from-right-4 duration-300">
-                      <span>Crypto Discount (10%)</span>
+                      <span>Discount ({discountRate * 100}%)</span>
                       <span>-${discount.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between text-[#01161e] font-bold text-lg animate-in fade-in slide-in-from-right-4 duration-300 delay-100">
@@ -274,10 +353,10 @@ export default function CartPage() {
                 </div>
               </div>
 
-              {isCrypto && (
+              {(isCrypto || isRevolut) && (
                 <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-xl text-center animate-in fade-in zoom-in-50 duration-300">
                   <p className="text-green-700 font-bold text-sm">
-                    🎉 You're saving ${discount.toFixed(2)} with crypto!
+                    🎉 You're saving ${discount.toFixed(2)} with {isCrypto ? 'crypto' : 'Revolut'}!
                   </p>
                 </div>
               )}
@@ -297,7 +376,7 @@ export default function CartPage() {
         </div>
       </div>
 
-      {isCheckoutOpen && <CheckoutModal onClose={() => setIsCheckoutOpen(false)} />}
+      {isCheckoutOpen && <CheckoutModal onClose={() => setIsCheckoutOpen(false)} initialPaymentMethod={selectedPayment} />}
     </div>
   );
 }

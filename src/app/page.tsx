@@ -43,7 +43,7 @@ export default function Home() {
                     {HERO_CONTENT.subheadline}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-5">
-                    <Link href="/wholesale" className="px-10 py-4 bg-[#124559] text-[#eff6e0] font-bold rounded-2xl hover:bg-[#598392] transition-all shadow-xl shadow-[#01161e]/50 text-center text-lg transform hover:-translate-y-1">
+                    <Link href="/cart" className="px-10 py-4 bg-[#124559] text-[#eff6e0] font-bold rounded-2xl hover:bg-[#598392] transition-all shadow-xl shadow-[#01161e]/50 text-center text-lg transform hover:-translate-y-1">
                         {HERO_CONTENT.ctaPrimary}
                     </Link>
                     <Link href="/products" className="px-10 py-4 bg-[#eff6e0]/10 backdrop-blur-sm border border-[#eff6e0]/20 text-[#eff6e0] font-bold rounded-2xl hover:bg-[#eff6e0]/20 transition-all text-center text-lg">
@@ -159,6 +159,144 @@ export default function Home() {
 
       {/* 3.5 FAQ PREVIEW (New) */}
       <HomeFaq />
+
+      {/* 3.7 HOW TO BUY CRYPTO SECTION */}
+      <section className="py-20 px-4 bg-[#eff6e0]">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <span className="inline-block py-2 px-4 rounded-full bg-orange-100 text-orange-600 text-sm font-bold uppercase tracking-wider mb-4">
+              New to Crypto?
+            </span>
+            <h2 className="text-4xl md:text-5xl font-black text-[#01161e] mb-4 tracking-tight">
+              How to Buy Cryptocurrency
+            </h2>
+            <p className="text-xl text-[#598392] max-w-2xl mx-auto">
+              Quick and easy platforms to purchase crypto for your orders
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            {/* FinchPay */}
+            <a
+              href="https://share.google/32y9wmggveGbS73Zu"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white rounded-3xl p-8 shadow-xl border border-[#aec3b0]/50 hover:shadow-2xl transition-all hover:-translate-y-2 group"
+            >
+              <div className="w-16 h-16 bg-gradient-to-br from-orange-400 to-orange-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform">
+                <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-black text-[#01161e] mb-3 group-hover:text-orange-600 transition-colors">FinchPay</h3>
+              <p className="text-[#598392] leading-relaxed mb-4">
+                Buy and Sell Cryptocurrency for Fiat with Ease. Simple interface for beginners.
+              </p>
+              <div className="flex items-center gap-2 text-orange-600 font-bold">
+                <span>Get Started</span>
+                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
+            </a>
+
+            {/* Guardarian */}
+            <a
+              href="https://share.google/9WFFIrSx39wROw9AK"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white rounded-3xl p-8 shadow-xl border border-[#aec3b0]/50 hover:shadow-2xl transition-all hover:-translate-y-2 group"
+            >
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform">
+                <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-black text-[#01161e] mb-3 group-hover:text-blue-600 transition-colors">Guardarian</h3>
+              <p className="text-[#598392] leading-relaxed mb-4">
+                Buy, Sell, and Swap crypto with Fiat On/Off Ramp & Best rates in the market.
+              </p>
+              <div className="flex items-center gap-2 text-blue-600 font-bold">
+                <span>Get Started</span>
+                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
+            </a>
+          </div>
+
+          {/* Video Tutorials */}
+          <div className="bg-gradient-to-br from-red-50 to-pink-50 rounded-3xl p-8 border border-red-200">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 bg-red-500 rounded-xl flex items-center justify-center">
+                <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+              </div>
+              <div>
+                <h3 className="text-2xl font-black text-[#01161e]">Video Tutorials</h3>
+                <p className="text-[#598392]">Step-by-step guides to help you get started</p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* CashApp Tutorial */}
+              <a
+                href="https://share.google/DQElG2drBx4wjljj0"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white rounded-2xl p-6 hover:shadow-lg transition-all group border border-gray-200"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-16 h-16 bg-red-100 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                    <svg className="w-8 h-8 text-red-600" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-bold text-lg text-[#01161e] mb-2 group-hover:text-red-600 transition-colors">How to Buy Crypto on CashApp</h4>
+                    <p className="text-sm text-[#598392] mb-3">Learn how to purchase Bitcoin and other cryptocurrencies using CashApp</p>
+                    <div className="flex items-center gap-2 text-red-600 font-bold text-sm">
+                      <span>Watch Tutorial</span>
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </a>
+
+              {/* Revolut Tutorial */}
+              <a
+                href="https://m.youtube.com/watch?v=luZv1aQtcCU"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white rounded-2xl p-6 hover:shadow-lg transition-all group border border-gray-200"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-16 h-16 bg-red-100 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                    <svg className="w-8 h-8 text-red-600" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-bold text-lg text-[#01161e] mb-2 group-hover:text-red-600 transition-colors">How to Buy Crypto on Revolut</h4>
+                    <p className="text-sm text-[#598392] mb-3">Complete guide to buying cryptocurrency through your Revolut account</p>
+                    <div className="flex items-center gap-2 text-red-600 font-bold text-sm">
+                      <span>Watch Tutorial</span>
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* 4. CTA SECTION (Modern Upgrade) */}
       <section className="py-20 px-4">

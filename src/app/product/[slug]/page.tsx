@@ -39,6 +39,10 @@ export default function ProductPage() {
   const handleAddToCart = () => {
     dispatch(addToCart({ product, quantity: qty }));
     toast.success(`${qty}x ${product.name} added to cart!`);
+    // Navigate to cart page after adding
+    setTimeout(() => {
+      router.push('/cart');
+    }, 500);
   };
 
   return (
@@ -179,40 +183,67 @@ export default function ProductPage() {
                     </div>
                  )}
 
-                 {/* Secure Payment & Crypto Discount Banner (New) */}
-                 <div className="bg-gradient-to-r from-[#01161e] to-[#124559] rounded-2xl p-4 mb-6 text-[#eff6e0] shadow-lg border border-[#eff6e0]/20 relative overflow-hidden group hover:shadow-2xl transition-all duration-300">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#aec3b0]/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2"></div>
+                 {/* Secure Payment & Crypto Discount Banner (Redesigned) */}
+                 <div className="bg-gradient-to-br from-[#01161e] via-[#124559] to-[#01161e] rounded-3xl p-6 mb-6 text-[#eff6e0] shadow-2xl border border-[#eff6e0]/20 relative overflow-hidden group hover:shadow-[#124559]/30 hover:shadow-2xl transition-all duration-300">
+                    {/* Decorative Background Elements */}
+                    <div className="absolute top-0 right-0 w-40 h-40 bg-green-400/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+                    <div className="absolute bottom-0 left-0 w-32 h-32 bg-[#aec3b0]/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
                     
-                    <div className="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-4">
-                        <div className="flex items-center gap-3">
-                             <div className="bg-[#eff6e0]/10 p-2 rounded-lg backdrop-blur-sm border border-[#eff6e0]/10">
+                    <div className="relative z-10">
+                        {/* Header */}
+                        <div className="flex items-center gap-3 mb-5">
+                             <div className="bg-green-400/20 p-2.5 rounded-xl backdrop-blur-sm border border-green-400/30 shadow-lg shadow-green-400/10">
                                 <svg className="w-6 h-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                              </div>
                              <div>
-                                 <h4 className="font-bold text-sm uppercase tracking-wider text-[#aec3b0]">Secure Checkout</h4>
-                                 <p className="font-black text-lg leading-none">Accepting Payments Via:</p>
+                                 <h4 className="font-bold text-xs uppercase tracking-widest text-green-400/90 mb-0.5">Secure Checkout</h4>
+                                 <p className="font-black text-xl leading-none text-white">We Accept</p>
                              </div>
                         </div>
                         
-                        <div className="flex items-center gap-2">
-                            <span className="px-2 py-1 bg-[#eff6e0] text-[#01161e] text-[10px] font-black rounded flex items-center gap-1 shadow-sm" title="Bitcoin">
-                                ₿ BTC
-                            </span>
-                            <span className="px-2 py-1 bg-[#eff6e0] text-[#01161e] text-[10px] font-black rounded flex items-center gap-1 shadow-sm" title="Ethereum">
-                                Ξ ETH
-                            </span>
-                             <span className="px-2 py-1 bg-[#eff6e0] text-[#01161e] text-[10px] font-black rounded flex items-center gap-1 shadow-sm" title="USDT">
-                                ₮ USDT
-                            </span>
-                             <span className="px-2 py-1 bg-[#aec3b0] text-[#01161e] text-[10px] font-black rounded flex items-center gap-1 shadow-sm" title="Bank Wire">
-                                WIRE
-                            </span>
+                        {/* Crypto Payments - Highlighted */}
+                        <div className="mb-4 pb-4 border-b border-[#eff6e0]/10">
+                            <div className="flex items-center gap-2 mb-3">
+                                <span className="text-xs font-bold text-green-400 uppercase tracking-wider">Crypto Payments</span>
+                                <span className="px-2 py-0.5 bg-green-400/20 text-green-300 text-[10px] font-black rounded-full border border-green-400/30">10% OFF</span>
+                            </div>
+                            <div className="flex flex-wrap gap-2">
+                                <span className="px-3 py-2 bg-gradient-to-br from-[#eff6e0] to-[#aec3b0] text-[#01161e] text-xs font-black rounded-lg flex items-center gap-1.5 shadow-md hover:shadow-lg hover:scale-105 transition-all" title="Bitcoin">
+                                    <span className="text-base">₿</span> BTC
+                                </span>
+                                <span className="px-3 py-2 bg-gradient-to-br from-[#eff6e0] to-[#aec3b0] text-[#01161e] text-xs font-black rounded-lg flex items-center gap-1.5 shadow-md hover:shadow-lg hover:scale-105 transition-all" title="Ethereum">
+                                    <span className="text-base">Ξ</span> ETH
+                                </span>
+                                <span className="px-3 py-2 bg-gradient-to-br from-[#eff6e0] to-[#aec3b0] text-[#01161e] text-xs font-black rounded-lg flex items-center gap-1.5 shadow-md hover:shadow-lg hover:scale-105 transition-all" title="USDT">
+                                    <span className="text-base">₮</span> USDT
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div className="mt-3 pt-3 border-t border-[#eff6e0]/10 flex items-center justify-center sm:justify-start gap-2 text-sm font-bold text-green-300">
-                         <svg className="w-4 h-4 animate-pulse" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zM12 2a1 1 0 01.967.744L14.146 7.2 17.5 9.134a1 1 0 010 1.732l-3.354 1.935-1.18 4.455a1 1 0 01-1.933 0L9.854 12.8 6.5 10.866a1 1 0 010-1.732l3.354-1.935 1.18-4.455A1 1 0 0112 2z" clipRule="evenodd"/></svg>
-                         Save 10% instantly when paying with Crypto!
+                        
+                        {/* Other Payment Methods */}
+                        <div>
+                            <span className="text-xs font-bold text-[#aec3b0] uppercase tracking-wider mb-3 block">Other Payment Options</span>
+                            <div className="flex flex-wrap gap-2">
+                                <span className="px-3 py-2 bg-white/10 backdrop-blur-sm text-white text-xs font-bold rounded-lg flex items-center gap-1.5 border border-white/20 hover:bg-white/20 transition-all" title="Bank Wire">
+                                    💳 WIRE
+                                </span>
+                                <span className="px-3 py-2 bg-white/10 backdrop-blur-sm text-white text-xs font-bold rounded-lg flex items-center gap-1.5 border border-white/20 hover:bg-white/20 transition-all" title="UK Bank Transfer">
+                                    �🇧 UK BANK
+                                </span>
+                                <span className="px-3 py-2 bg-white/10 backdrop-blur-sm text-white text-xs font-bold rounded-lg flex items-center gap-1.5 border border-white/20 hover:bg-white/20 transition-all" title="Revolut">
+                                    � REVOLUT <span className="text-[10px] text-green-300">-5%</span>
+                                </span>
+                                <span className="px-3 py-2 bg-white/10 backdrop-blur-sm text-white text-xs font-bold rounded-lg flex items-center gap-1.5 border border-white/20 hover:bg-white/20 transition-all" title="PayPal">
+                                    🅿️ PAYPAL
+                                </span>
+                                <span className="px-3 py-2 bg-white/10 backdrop-blur-sm text-white text-xs font-bold rounded-lg flex items-center gap-1.5 border border-white/20 hover:bg-white/20 transition-all" title="CashApp">
+                                    💵 CASHAPP
+                                </span>
+                                <span className="px-3 py-2 bg-white/10 backdrop-blur-sm text-white text-xs font-bold rounded-lg flex items-center gap-1.5 border border-white/20 hover:bg-white/20 transition-all" title="Apple Pay">
+                                    🍎 APPLE PAY
+                                </span>
+                            </div>
+                        </div>
                     </div>
                  </div>
 

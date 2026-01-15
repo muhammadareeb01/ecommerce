@@ -1,16 +1,20 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 import { RootState } from '@/store/store';
 import { clearCart } from '@/store/features/cartSlice';
+import SuccessModal from '@/components/ui/SuccessModal';
+
+type PaymentMethod = 'bitcoin' | 'ethereum' | 'usdt' | 'bank' | 'wire' | 'uk_bank' | 'revolut' | 'paypal' | 'cashapp' | 'apple_pay';
 
 interface CheckoutModalProps {
   onClose: () => void;
+  initialPaymentMethod?: PaymentMethod;
 }
 
-export default function CheckoutModal({ onClose }: CheckoutModalProps) {
+export default function CheckoutModal({ onClose, initialPaymentMethod = 'bitcoin' }: CheckoutModalProps) {
   const router = useRouter();
   const dispatch = useDispatch();
   
@@ -21,18 +25,25 @@ export default function CheckoutModal({ onClose }: CheckoutModalProps) {
     address: '',
     contactMethod: 'whatsapp', // New Field
     notes: '', // New Field
-    paymentMethod: 'bitcoin',
+    paymentMethod: initialPaymentMethod,
     showContactDropdown: false,
     showPaymentDropdown: false,
   });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   
   const items = useSelector((state: RootState) => state.cart.items);
   const subtotal = items.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
 
-  // Discount Logic
+  // Discount Logic - same as cart page
   const isCrypto = ['bitcoin', 'ethereum', 'usdt'].includes(formData.paymentMethod);
-  const discountAmount = isCrypto ? subtotal * 0.10 : 0;
+  const isRevolut = formData.paymentMethod === 'revolut';
+  
+  let discountRate = 0;
+  if (isCrypto) discountRate = 0.10;
+  else if (isRevolut) discountRate = 0.05;
+
+  const discountAmount = subtotal * discountRate;
   const finalTotal = subtotal - discountAmount;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -53,19 +64,24 @@ export default function CheckoutModal({ onClose }: CheckoutModalProps) {
                 total: finalTotal, 
                 subtotal,
                 discount: discountAmount,
-                isCrypto 
+                isCrypto,
+                isRevolut
             })
         });
 
         if (response.ok) {
             setStatus('success');
             dispatch(clearCart());
-            toast.success("Thank you. We’ve received your order request and will contact you shortly with payment instructions. Kindly leave a text on live chat to speed up the process.", { autoClose: 5000 });
+            toast.success("🎉 Order request sent successfully! Check your email for confirmation.", { 
+                autoClose: 3000 
+            });
+            setShowSuccessModal(true);
             
+            // Redirect to home page after 3.5 seconds (after toast closes)
             setTimeout(() => {
                 router.push('/');
                 onClose();
-            }, 5000); // Increased time to read message
+            }, 3500);
         } else {
             setStatus('error');
         }
@@ -75,37 +91,11 @@ export default function CheckoutModal({ onClose }: CheckoutModalProps) {
     }
   };
 
-  const handleCloseSuccess = () => {
-    router.push('/');
+  const handleSuccessModalClose = () => {
+    setShowSuccessModal(false);
     onClose();
+    router.push('/');
   };
-
-  if (status === 'success') {
-    return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#01161e]/80 backdrop-blur-sm animate-in fade-in duration-200">
-            <div className="bg-[#eff6e0] rounded-2xl p-8 max-w-md w-full text-center shadow-2xl border-2 border-[#124559]">
-                <div className="w-16 h-16 bg-[#aec3b0]/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-[#124559]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                </div>
-                <h2 className="text-2xl font-black text-[#01161e] mb-2">Order Received!</h2>
-                <p className="text-[#598392] mb-6 font-medium">
-                    Thank you. We’ve received your order request and will contact you shortly with payment instructions. Kindly leave a text on live chat to speed up the process.
-                </p>
-                <div className="text-sm text-[#124559] mb-4 bg-[#aec3b0]/20 p-2 rounded">
-                    <strong>Total to Pay: ${finalTotal.toFixed(2)}</strong>
-                </div>
-                <button 
-                    onClick={handleCloseSuccess}
-                    className="w-full bg-[#124559] text-[#eff6e0] font-bold py-3 rounded-xl hover:bg-[#01161e] transition-colors"
-                >
-                    Close & Return Home
-                </button>
-            </div>
-        </div>
-    )
-  }
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#01161e]/80 backdrop-blur-sm animate-in fade-in duration-200">
@@ -121,27 +111,7 @@ export default function CheckoutModal({ onClose }: CheckoutModalProps) {
         
         <form onSubmit={handleSubmit} className="p-8 overflow-y-auto">
             
-            {/* Accepted Methods Banner */}
-            <div className="flex flex-col sm:flex-row items-center justify-between bg-white border border-[#aec3b0] p-4 rounded-xl mb-8 shadow-sm gap-4">
-                <span className="text-xs font-black uppercase tracking-wider text-[#598392] flex items-center gap-2">
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
-                    Secure Payments
-                </span>
-                <div className="flex flex-wrap justify-center gap-2">
-                    <span className="px-2 py-1 bg-orange-50 text-orange-700 text-[10px] font-bold rounded border border-orange-100 flex items-center gap-1">
-                        ₿ BTC
-                    </span>
-                    <span className="px-2 py-1 bg-blue-50 text-blue-700 text-[10px] font-bold rounded border border-blue-100 flex items-center gap-1">
-                        Ξ ETH
-                    </span>
-                    <span className="px-2 py-1 bg-green-50 text-green-700 text-[10px] font-bold rounded border border-green-100 flex items-center gap-1">
-                        ₮ USDT
-                    </span>
-                    <span className="px-2 py-1 bg-gray-50 text-gray-700 text-[10px] font-bold rounded border border-gray-100">
-                        BANK WIRE
-                    </span>
-                </div>
-            </div>
+           
 
             {/* Contact Info Group */}
             <div className="mb-8">
@@ -281,9 +251,17 @@ export default function CheckoutModal({ onClose }: CheckoutModalProps) {
                                     {formData.paymentMethod === 'usdt' && 'Tether (USDT - TRC20)'}
                                     {formData.paymentMethod === 'bank' && 'Bank Transfer'}
                                     {formData.paymentMethod === 'wire' && 'Wire Transfer'}
+                                    {formData.paymentMethod === 'uk_bank' && 'UK Bank Transfer'}
+                                    {formData.paymentMethod === 'revolut' && 'Revolut Card/Crypto'}
+                                    {formData.paymentMethod === 'paypal' && 'PayPal'}
+                                    {formData.paymentMethod === 'cashapp' && 'CashApp'}
+                                    {formData.paymentMethod === 'apple_pay' && 'USA Apple Pay'}
                                 </span>
-                                {['bitcoin', 'ethereum', 'usdt'].includes(formData.paymentMethod) && (
+                                {isCrypto && (
                                     <span className="text-xs font-bold text-green-600 bg-green-100 px-2 py-0.5 rounded-full inline-block">10% Discount Applied</span>
+                                )}
+                                {isRevolut && (
+                                    <span className="text-xs font-bold text-green-600 bg-green-100 px-2 py-0.5 rounded-full inline-block">5% Discount Applied</span>
                                 )}
                             </div>
                          </div>
@@ -316,13 +294,17 @@ export default function CheckoutModal({ onClose }: CheckoutModalProps) {
                                 </div>
                             ))}
 
-                            {/* Standard Group */}
+                            {/* Other Payment Methods */}
                             <div className="bg-gray-50 px-4 py-2 text-xs font-black uppercase tracking-wider text-[#598392] border-b border-gray-100 border-t">
-                                Standard Options
+                                Other Payment Methods
                             </div>
                              {[
-                                { id: 'bank', label: 'Bank Transfer', icon: '🏦' },
-                                { id: 'wire', label: 'Wire Transfer', icon: '🏛️' }
+                                { id: 'wire', label: 'Wire Transfer', icon: '💳' },
+                                { id: 'uk_bank', label: 'UK Bank Transfer', icon: '🇬🇧' },
+                                { id: 'revolut', label: 'Revolut Card/Crypto (-5%)', icon: '🇷' },
+                                { id: 'paypal', label: 'PayPal', icon: '🅿️' },
+                                { id: 'cashapp', label: 'CashApp', icon: '💵' },
+                                { id: 'apple_pay', label: 'USA Apple Pay', icon: '🍎' }
                             ].map((option) => (
                                 <div 
                                     key={option.id}
@@ -345,9 +327,14 @@ export default function CheckoutModal({ onClose }: CheckoutModalProps) {
                         <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/></svg>
                         10% Crypto Discount Applied!
                     </p>
+                ) : isRevolut ? (
+                    <p className="text-sm text-green-700 mt-3 font-bold flex items-center bg-green-100 p-3 rounded-xl border border-green-200 animate-in fade-in slide-in-from-top-2">
+                        <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/></svg>
+                        5% Revolut Discount Applied!
+                    </p>
                 ) : (
                     <p className="text-xs text-[#598392] mt-2 ml-1">
-                        Select a Crypto option to get a 10% discount.
+                        Select Crypto for 10% discount or Revolut for 5% discount.
                     </p>
                 )}
             </div>
@@ -381,6 +368,14 @@ export default function CheckoutModal({ onClose }: CheckoutModalProps) {
             </button>
         </form>
       </div>
+
+      {/* Success Modal */}
+      <SuccessModal 
+        isOpen={showSuccessModal}
+        onClose={handleSuccessModalClose}
+        title="Order Request Sent!"
+        message="Thank you for your order request. Our team will review it and get back to you within 24 hours with payment instructions."
+      />
     </div>
   );
 }

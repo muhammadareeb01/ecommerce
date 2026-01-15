@@ -4,6 +4,7 @@ import './globals.css';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import WhatsAppChat from '@/components/ui/WhatsAppChat';
 import { ReduxProvider } from '@/components/providers/ReduxProvider';
 import { ToastContainer } from 'react-toastify';
 
@@ -29,6 +30,7 @@ export default function RootLayout({
             </main>
             <Footer />
             <ToastContainer />
+            <WhatsAppChat />
         </ReduxProvider>
       </body>
     </html>
