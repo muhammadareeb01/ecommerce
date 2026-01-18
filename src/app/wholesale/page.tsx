@@ -1,12 +1,26 @@
 import Link from 'next/link';
 import { Metadata } from 'next';
+import { client } from '@/sanity/lib/client';
+import { GET_WHOLESALE_PAGE_DATA_QUERY } from '@/sanity/lib/queries';
 
 export const metadata: Metadata = {
   title: 'Bulk Vapes Wholesale Distributor USA | Buy Vapes in Bulk',
   description: 'Trusted bulk vape wholesale supplier in the USA. We specialize in large-volume vape orders, offering transparent pricing, manual order verification, and flexible payment options.',
 };
 
-export default function WholesalePage() {
+export const dynamic = 'force-dynamic';
+
+export default async function WholesalePage() {
+  const data = await client.fetch(GET_WHOLESALE_PAGE_DATA_QUERY);
+
+  // Fallback features if none are in Sanity yet
+  const features = data?.features || [
+      { title: 'Mix & Match Bulk Orders', desc: 'Combine different brands and flavors to meet MOQs without overstocking single items.' },
+      { title: 'Dedicated Account Support', desc: 'Get direct access to a wholesale agent for personalized service and order tracking.' },
+      { title: 'Crypto & Alternative Payments', desc: 'Secure payment options including Bitcoin, Ethereum, and USDT with instant discounts.' },
+      { title: 'Scalable Supply for Growing Businesses', desc: 'Consistent inventory and fast fulfillment for growing retail businesses.' }
+  ];
+
   return (
     <div className="bg-[#eff6e0] min-h-screen py-16 px-4 sm:px-8 font-sans">
       <div className="max-w-4xl mx-auto">
@@ -15,10 +29,10 @@ export default function WholesalePage() {
         <div className="text-center mb-16">
             <span className="text-[#124559] font-bold uppercase tracking-wider text-sm">Partner Program</span>
             <h1 className="text-4xl md:text-5xl font-black text-[#01161e] mt-2 mb-6">
-                Wholesale Bulk Vapes Distributor in the USA
+                {data?.heading || 'Wholesale Bulk Vapes Distributor in the USA'}
             </h1>
             <p className="text-xl text-[#598392] leading-relaxed max-w-2xl mx-auto">
-                BulkVapes.us is a trusted bulk vape wholesale supplier serving businesses nationwide. We specialize in large-volume vape orders, offering transparent pricing, manual order verification, and flexible payment options.
+                {data?.description || 'BulkVapes.us is a trusted bulk vape wholesale supplier serving businesses nationwide. We specialize in large-volume vape orders, offering transparent pricing, manual order verification, and flexible payment options.'}
             </p>
         </div>
 
@@ -27,12 +41,7 @@ export default function WholesalePage() {
             <h2 className="text-3xl font-black text-[#01161e] text-center mb-8">Wholesale Features</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {[
-                    { title: 'Mix & Match Bulk Orders', desc: 'Combine different brands and flavors to meet MOQs without overstocking single items.' },
-                    { title: 'Dedicated Account Support', desc: 'Get direct access to a wholesale agent for personalized service and order tracking.' },
-                    { title: 'Crypto & Alternative Payments', desc: 'Secure payment options including Bitcoin, Ethereum, and USDT with instant discounts.' },
-                    { title: 'Scalable Supply for Growing Businesses', desc: 'Consistent inventory and fast fulfillment for growing retail businesses.' }
-                ].map((item, idx) => (
+                {features.map((item: any, idx: number) => (
                     <div key={idx} className="bg-white p-8 rounded-3xl border border-[#aec3b0]/50 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1">
                          <h3 className="text-xl font-bold text-[#124559] mb-3">{item.title}</h3>
                          <p className="text-[#598392] leading-relaxed">{item.desc}</p>

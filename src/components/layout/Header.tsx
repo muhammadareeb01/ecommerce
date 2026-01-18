@@ -7,7 +7,9 @@ import { RootState } from '@/store/store';
 import { toggleCart } from '@/store/features/cartSlice';
 import CartDropdown from '@/components/cart/CartDropdown';
 
-export default function Header() {
+import Image from 'next/image';
+
+export default function Header({ logoUrl }: { logoUrl?: string }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const dispatch = useDispatch();
@@ -31,8 +33,22 @@ export default function Header() {
         <div className="flex justify-between items-center h-20">
           {/* Logo (Left) */}
           <div className="flex-1 flex items-center justify-start">
-            <Link href="/" className="text-3xl font-black tracking-tighter text-[#01161e] flex items-center gap-1">
-              BULK<span className="text-[#124559]">VAPES</span>
+            <Link href="/" className="flex items-center gap-2">
+              {logoUrl ? (
+                <div className="relative h-10 w-40">
+                    <Image 
+                        src={logoUrl} 
+                        alt="Bulk Vapes Logo" 
+                        fill
+                        className="object-contain object-left"
+                        priority
+                    />
+                </div>
+              ) : (
+                 <span className="text-3xl font-black tracking-tighter text-[#01161e] flex items-center gap-1">
+                    BULK<span className="text-[#124559]">VAPES</span>
+                 </span>
+              )}
             </Link>
           </div>
 

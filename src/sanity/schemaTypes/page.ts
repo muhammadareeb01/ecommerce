@@ -30,6 +30,11 @@ export const page = defineType({
       type: 'string',
     }),
     defineField({
+      name: 'subheading',
+      title: 'Sub Heading',
+      type: 'string',
+    }),
+    defineField({
       name: 'description',
       title: 'Main Description',
       type: 'text',

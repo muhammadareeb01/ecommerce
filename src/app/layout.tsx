@@ -7,6 +7,8 @@ import Footer from '@/components/layout/Footer';
 import WhatsAppChat from '@/components/ui/WhatsAppChat';
 import { ReduxProvider } from '@/components/providers/ReduxProvider';
 import { ToastContainer } from 'react-toastify';
+import { client } from '@/sanity/lib/client';
+import { GET_SETTINGS_QUERY } from '@/sanity/lib/queries';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -15,20 +17,22 @@ export const metadata: Metadata = {
   description: 'Leading distributor of disposable vapes, e-liquids, and pods.',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const settings = await client.fetch(GET_SETTINGS_QUERY);
+
   return (
     <html lang="en">
       <body className={inter.className}>
         <ReduxProvider>
-            <Header />
+            <Header logoUrl={settings?.logoUrl} />
             <main className="min-h-screen">
             {children}
             </main>
-            <Footer />
+            <Footer logoUrl={settings?.logoUrl} />
             <ToastContainer />
             <WhatsAppChat />
         </ReduxProvider>

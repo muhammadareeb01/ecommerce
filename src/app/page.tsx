@@ -6,7 +6,7 @@ import CategoriesSection from '@/components/layout/CategoriesSection';
 import HomeFaq from '@/components/ui/HomeFaq';
 import { PRODUCTS, REVIEWS } from '@/data/mockData';
 import { client } from '@/sanity/lib/client';
-import { GET_ALL_CATEGORIES_QUERY } from '@/sanity/lib/queries';
+import { GET_ALL_CATEGORIES_QUERY, GET_HOME_PAGE_CONTENT_QUERY } from '@/sanity/lib/queries';
 
 export const metadata = {
   title: 'Bulk Vapes Wholesale USA | Buy Disposable Vapes in Bulk & Pay with Crypto',
@@ -16,8 +16,9 @@ export const metadata = {
 export const dynamic = 'force-dynamic';
 
 export default async function Home() {
-  const featuredProducts = PRODUCTS.filter(p => p.isFeatured);
+  // const featuredProducts = PRODUCTS.filter(p => p.isFeatured); // Unused now
   const categories = await client.fetch(GET_ALL_CATEGORIES_QUERY);
+  const homeContent = await client.fetch(GET_HOME_PAGE_CONTENT_QUERY);
 
   return (
     <div className="flex flex-col min-h-screen font-sans bg-[#eff6e0]">
@@ -27,7 +28,7 @@ export default async function Home() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0 opacity-40 mix-blend-overlay">
             <Image 
-                src="https://images.unsplash.com/photo-1534067783741-512d69f66008?auto=format&fit=crop&q=80&w=2000"
+                src={homeContent?.heroImage || "https://images.unsplash.com/photo-1534067783741-512d69f66008?auto=format&fit=crop&q=80&w=2000"}
                 alt="Bulk Vapes Wholesale USA"
                 fill
                 className="object-cover"
@@ -44,17 +45,28 @@ export default async function Home() {
                    Wholesale Only &bull; 21+
                 </span>
                 <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-none mb-8 text-[#eff6e0]">
-                    Bulk Vapes Wholesale in the USA – <span className="text-[#aec3b0]">Buy Disposable Vapes in Bulk & Save More</span>
+                    {homeContent?.heading || 'Bulk Vapes Wholesale in the USA – '}<span className="text-[#aec3b0]">{homeContent?.subheading ? '' : 'Buy Disposable Vapes in Bulk & Save More'}</span>
                 </h1>
                 
                 <div className="mb-10 text-lg md:text-xl text-[#598392] max-w-2xl leading-relaxed font-light space-y-4">
-                  <h2 className="text-2xl font-bold text-[#eff6e0] mb-2">Buy Bulk Vapes Online from a Trusted USA Wholesale Supplier</h2>
-                  <p>
-                    Welcome to BulkVapes.us, your reliable source for bulk vapes wholesale in the United States. We supply disposable vapes, nicotine vapes, THC vapes, and THCA disposables in bulk, designed for retailers, resellers, and distributors looking for competitive pricing and fast fulfillment.
-                  </p>
-                  <p>
-                    Order in bulk, mix and match products, and pay with crypto to get an instant 10% discount.
-                  </p>
+                  {homeContent?.subheading && (
+                    <h2 className="text-2xl font-bold text-[#eff6e0] mb-2">{homeContent.subheading}</h2>
+                  )}
+                  {homeContent?.description ? (
+                    homeContent.description.split('\n').map((paragraph: string, index: number) => (
+                      <p key={index}>{paragraph}</p>
+                    ))
+                  ) : (
+                    <>
+                      <h2 className="text-2xl font-bold text-[#eff6e0] mb-2">Buy Bulk Vapes Online from a Trusted USA Wholesale Supplier</h2>
+                      <p>
+                        Welcome to BulkVapes.us, your reliable source for bulk vapes wholesale in the United States. We supply disposable vapes, nicotine vapes, THC vapes, and THCA disposables in bulk, designed for retailers, resellers, and distributors looking for competitive pricing and fast fulfillment.
+                      </p>
+                      <p>
+                        Order in bulk, mix and match products, and pay with crypto to get an instant 10% discount.
+                      </p>
+                    </>
+                  )}
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-5">
@@ -161,6 +173,7 @@ export default async function Home() {
       </section>
 
       {/* FEATURED PRODUCTS */}
+       {/* FEATURED PRODUCTS SECTION REMOVED AS REQUESTED 
        <section className="py-12 md:py-20 w-full mb-12">
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4 px-4 max-w-7xl mx-auto w-full">
             <div>
@@ -181,7 +194,8 @@ export default async function Home() {
                 </div>
             ))}
         </div>
-      </section>
+      </section> 
+      */}
           
       {/* 3. PROOF SECTION */}
       <Section className="bg-[#124559] text-[#eff6e0] rounded-[3rem] mx-4 md:mx-auto max-w-7xl py-24 mb-20 relative overflow-hidden shadow-2xl">

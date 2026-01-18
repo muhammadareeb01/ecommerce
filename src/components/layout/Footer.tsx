@@ -1,6 +1,7 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
-export default function Footer() {
+export default function Footer({ logoUrl }: { logoUrl?: string }) {
   return (
     <footer className="bg-[#01161e] text-[#eff6e0] pt-20 pb-10 border-t border-[#124559]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -8,9 +9,22 @@ export default function Footer() {
           
           {/* Brand Column (Kept for design, but links follow spec below) */}
           <div className="lg:col-span-2">
-            <Link href="/" className="text-3xl font-black tracking-tighter flex items-center gap-2 mb-6">
-              <span className="text-[#eff6e0]">BULK</span>
-              <span className="text-[#aec3b0]">VAPES</span>
+            <Link href="/" className="mb-6 block relative">
+              {logoUrl ? (
+                <div className="relative h-12 w-48">
+                    <Image 
+                        src={logoUrl} 
+                        alt="Bulk Vapes Logo" 
+                        fill
+                        className="object-contain object-left"
+                    />
+                </div>
+              ) : (
+                <div className="text-3xl font-black tracking-tighter flex items-center gap-2">
+                  <span className="text-[#eff6e0]">BULK</span>
+                  <span className="text-[#aec3b0]">VAPES</span>
+                </div>
+              )}
             </Link>
             <p className="text-[#598392] mb-6 leading-relaxed max-w-sm">
               America&apos;s leading wholesale distributor for premium disposable vapes and e-liquids.
