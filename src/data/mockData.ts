@@ -81,19 +81,6 @@ export const REVIEWS: Review[] = [
 
 export const CATEGORIES: Category[] = [
     {
-        id: 'cat_thc',
-        name: 'THC Vapes',
-        slug: 'thc-vapes',
-        image: 'https://images.unsplash.com/photo-1612447936671-50e50882d9d9?auto=format&fit=crop&q=80&w=500', 
-        description: 'Premium THC disposables and cartridges. High potency, lab-tested.',
-        gradient: 'from-[#01161e] to-[#124559]',
-        accent: '#aec3b0',
-        faqs: [
-            { question: "Are these THC products lab tested?", answer: "Yes, all our THC products come with third-party lab results (COAs) to ensure potency and safety." },
-            { question: "What is the shelf life of THC disposables?", answer: "Typically 12 months if stored in a cool, dark place away from direct sunlight." }
-        ]
-    },
-    {
         id: 'cat_nic',
         name: 'Nicotine Vapes',
         slug: 'nicotine-vapes',
@@ -107,17 +94,39 @@ export const CATEGORIES: Category[] = [
         ]
     },
     {
-        id: 'cat_cbd',
-        name: 'CBD Vapes',
-        slug: 'cbd-vapes',
-        image: 'https://images.unsplash.com/photo-1603912699214-9262ba94a320?auto=format&fit=crop&q=80&w=500',
-        description: 'Non-psychoactive CBD vapes for wellness and relaxation.',
-        gradient: 'from-[#598392] to-[#aec3b0]',
-        accent: '#01161e',
+        id: 'cat_thc',
+        name: 'THC Vapes',
+        slug: 'thc-vapes',
+        image: 'https://images.unsplash.com/photo-1612447936671-50e50882d9d9?auto=format&fit=crop&q=80&w=500', 
+        description: 'Premium THC disposables and cartridges. High potency, lab-tested.',
+        gradient: 'from-[#01161e] to-[#124559]',
+        accent: '#aec3b0',
         faqs: [
-            { question: "Will CBD vapes get me high?", answer: "No, our CBD products contain less than 0.3% THC and are non-psychoactive." },
-            { question: "Is shipping legal for CBD?", answer: "Yes, CBD products derived from hemp are federally legal to ship in the US." }
+            { question: "Are these THC products lab tested?", answer: "Yes, all our THC products come with third-party lab results (COAs) to ensure potency and safety." },
+            { question: "What is the shelf life of THC disposables?", answer: "Typically 12 months if stored in a cool, dark place away from direct sunlight." }
         ]
+    },
+    {
+        id: 'cat_thca',
+        name: 'THCA Vapes',
+        slug: 'thca-vapes',
+        image: 'https://images.unsplash.com/photo-1629196911514-cfd8d63f6311?auto=format&fit=crop&q=80&w=500', 
+        description: 'Legal hemp-derived THCA disposables and carts. Potent and compliant.',
+        gradient: 'from-[#01161e] to-[#598392]',
+        accent: '#aec3b0',
+        faqs: [
+            { question: "Is THCA legal?", answer: "Yes, our THCA products are hemp-derived and federally legal under the 2018 Farm Bill (containing less than 0.3% Delta-9 THC)." },
+            { question: "Do you offer bulk THCA pricing?", answer: "Absolutely. We specialize in bulk THCA supply for retailers." }
+        ]
+    },
+    {
+        id: 'cat_cartridges',
+        name: 'Vape Cartridges',
+        slug: 'vape-cartridges',
+        image: 'https://images.unsplash.com/photo-1542475143-585ee5db30e7?auto=format&fit=crop&q=80&w=500', 
+        description: 'High-quality vape cartridges for THC, CBD, and other distillates.',
+        gradient: 'from-[#124559] to-[#aec3b0]',
+        accent: '#eff6e0',
     }
 ];
 
@@ -131,7 +140,7 @@ export const PRODUCTS: Product[] = [
         wholesalePrice: 18.00,
         wholesaleMinQty: 10,
         category: 'thc-vapes',
-        image: '/images/product.png', // Placeholder, user can update
+        image: '/images/product.png',
         description: 'Authentic Fryd Extracts 2g Live Resin Disposable. Berry Blow Pop flavor.',
         features: ['2g Live Resin', 'Rechargeable', 'Lab Tested'],
         isFeatured: true
@@ -217,50 +226,51 @@ export const PRODUCTS: Product[] = [
         isFeatured: true
     },
 
-    // --- CBD Vapes ---
+    // --- THCA Vapes (Example Product) ---
     {
-        id: 'cbd_1',
-        name: 'JustCBD 1000mg - Pineapple Express',
-        slug: 'justcbd-1000mg-pineapple-express',
-        price: 25.00,
-        wholesalePrice: 12.00,
+        id: 'thca_1',
+        name: 'Hidden Hills 2g Live Res - London Pound Cake',
+        slug: 'hidden-hills-2g-live-res-london-pound-cake',
+        price: 38.00,
+        wholesalePrice: 19.50,
         wholesaleMinQty: 10,
-        category: 'cbd-vapes',
+        category: 'thca-vapes', // matches the new slug
         image: '/images/product.png',
-        description: 'Full spectrum CBD vape cartridge. Pineapple Express terpene profile.',
-        features: ['1000mg CBD', 'No THC', 'Natural Terpenes'],
+        description: 'Hidden Hills Club 2g Live Resin + THCA blend. London Pound Cake strain.',
+        features: ['2g Blend', 'THCA + D9', 'Indica'],
         isFeatured: false
     },
+     // --- Cartridges (Example) ---
     {
-        id: 'cbd_2',
-        name: 'Koi CBD Disposable - Tropical',
-        slug: 'koi-cbd-disposable-tropical',
-        price: 27.99,
-        wholesalePrice: 13.50,
-        wholesaleMinQty: 10,
-        category: 'cbd-vapes',
+        id: 'cart_1',
+        name: 'Cake 1g Cart - Wedding Cake',
+        slug: 'cake-1g-cart-wedding-cake',
+        price: 20.00,
+        wholesalePrice: 10.00,
+        wholesaleMinQty: 20,
+        category: 'vape-cartridges',
         image: '/images/product.png',
-        description: 'Koi CBD disposable vape bar. Tropical fruit mix.',
-        features: ['2g Device', 'Hemp Derived', 'Relaxation'],
+        description: 'Cake 510 Thread Cartridge. Wedding Cake strain.',
+        features: ['1g Ceramic', '510 Thread', 'High Terpenes'],
         isFeatured: false
     }
 ];
 
 export const FAQS: FaqItem[] = [
     {
-        question: "What is the Minimum Order Quantity (MOQ)?",
-        answer: "Our general MOQ for wholesale accounts is $500 per order, or 50 units for specific product lines."
+        question: "Where can I buy vapes in bulk in the USA?",
+        answer: "You can order directly from BulkVapes.us by submitting a bulk order request."
     },
     {
-        question: "Do you ship internationally?",
-        answer: "Yes, we ship to most countries. Shipping rates and times vary by location."
+        question: "How do I buy vapes in bulk?",
+        answer: "Add products to cart, submit the order form, and our team will contact you with payment instructions."
     },
     {
-        question: "How do I pay with Crypto?",
-        answer: "Select 'Crypto Payment' at the order form. You will receive a 10% discount. We accept BTC, ETH, and USDT."
+        question: "Do I get a discount when paying with crypto?",
+        answer: "Yes, crypto payments receive a 10% discount. We accept BTC, ETH, and USDT."
     },
     {
-        question: "Are your products authentic?",
-        answer: "Yes, we guarantee 100% authenticity. We source directly from manufacturers and authorized distributors."
+        question: "How long does delivery take?",
+        answer: "Delivery times depend on order size and location but are typically fast within the USA."
     }
 ];

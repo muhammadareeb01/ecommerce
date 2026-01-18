@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | Bulk Vapes USA',
-  description: 'How we collect, use, and protect your data.',
+  description: 'Privacy Policy for Bulk Vapes USA. Learn how we protect your wholesale business data, payment info, and transaction details.',
 };
 
 export default function PrivacyPage() {

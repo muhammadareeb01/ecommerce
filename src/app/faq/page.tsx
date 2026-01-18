@@ -12,7 +12,7 @@ export default function FAQPage() {
         <div className="text-center mb-16 animate-in slide-in-from-bottom-4 duration-700 fade-in">
           <span className="text-[#124559] font-bold uppercase tracking-wider text-sm">Help Center</span>
           <h1 className="text-4xl md:text-5xl font-black text-[#01161e] mt-2 mb-6">
-            Frequently Asked Questions
+            Bulk Vapes Wholesale FAQ
           </h1>
           <p className="text-xl text-[#598392] leading-relaxed max-w-2xl mx-auto">
             Find answers to your questions about our wholesale process, shipping, and payment options.
@@ -22,7 +22,24 @@ export default function FAQPage() {
         {/* FAQ Accordion */}
         <div className="bg-white rounded-3xl border border-[#aec3b0]/50 shadow-xl shadow-[#124559]/5 overflow-hidden animate-in slide-in-from-bottom-8 duration-700 delay-100 fill-mode-backwards">
           <div className="divide-y divide-[#aec3b0]/20">
-            {FAQS.map((faq, idx) => (
+            {[
+                {
+                    question: "Where can I buy vapes in bulk in the USA?",
+                    answer: "You can order directly from BulkVapes.us by submitting a bulk order request."
+                },
+                {
+                    question: "How do I buy vapes in bulk?",
+                    answer: "Add products to cart, submit the order form, and our team will contact you with payment instructions."
+                },
+                {
+                    question: "Do I get a discount when paying with crypto?",
+                    answer: "Yes, crypto payments receive a 10% discount."
+                },
+                {
+                    question: "How long does delivery take?",
+                    answer: "Delivery times depend on order size and location but are typically fast within the USA."
+                }
+            ].map((faq, idx) => (
               <details key={idx} className="group p-6 cursor-pointer bg-white hover:bg-[#eff6e0]/20 transition-colors duration-200">
                 <summary className="flex items-center justify-between list-none">
                   <span className="font-bold text-[#124559] text-lg pr-4">{faq.question}</span>

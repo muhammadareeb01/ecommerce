@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Terms and Conditions | Bulk Vapes USA',
-  description: 'Read our terms and conditions for wholesale orders and usage.',
+  description: 'Wholesale Terms & Conditions for Bulk Vapes USA. Read our policies on ordering, payment, shipping, and compliance.',
 };
 
 export default function TermsPage() {

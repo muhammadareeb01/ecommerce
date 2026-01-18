@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Refund Policy | Bulk Vapes USA',
-  description: 'Our policies on returns, refunds, and damaged items.',
+  description: 'Wholesale Refund & Return Policy. Guidelines for damaged items (DOA), order cancellations, and replacement credits.',
 };
 
 export default function RefundPage() {

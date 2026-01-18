@@ -1,8 +1,9 @@
 import Link from 'next/link';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Wholesale Information | Bulk Vapes USA',
-  description: 'Learn about our wholesale process, MOQs, and shipping policies.',
+export const metadata: Metadata = {
+  title: 'Bulk Vapes Wholesale Distributor USA | Buy Vapes in Bulk',
+  description: 'Trusted bulk vape wholesale supplier in the USA. We specialize in large-volume vape orders, offering transparent pricing, manual order verification, and flexible payment options.',
 };
 
 export default function WholesalePage() {
@@ -14,33 +15,30 @@ export default function WholesalePage() {
         <div className="text-center mb-16">
             <span className="text-[#124559] font-bold uppercase tracking-wider text-sm">Partner Program</span>
             <h1 className="text-4xl md:text-5xl font-black text-[#01161e] mt-2 mb-6">
-                Wholesale Made Simple
+                Wholesale Bulk Vapes Distributor in the USA
             </h1>
             <p className="text-xl text-[#598392] leading-relaxed max-w-2xl mx-auto">
-                We streamline the sourcing process so you can focus on growing your retail business. No hidden fees, just great margins.
+                BulkVapes.us is a trusted bulk vape wholesale supplier serving businesses nationwide. We specialize in large-volume vape orders, offering transparent pricing, manual order verification, and flexible payment options.
             </p>
         </div>
 
-        {/* Process Steps */}
-        <div className="grid gap-12 mb-20 relative">
-            <div className="absolute left-8 top-8 bottom-8 w-1 bg-[#aec3b0]/30 hidden md:block"></div>
+        {/* Process Steps / Features */}
+        <div className="grid gap-8 mb-20">
+            <h2 className="text-3xl font-black text-[#01161e] text-center mb-8">Wholesale Features</h2>
             
-            {[
-                { step: '01', title: 'Browse Catalog', desc: 'Explore our extensive range of top-tier vape products. Filtering by THC, Nicotine, or CBD to find exactly what your customers want.' },
-                { step: '02', title: 'No Account Needed', desc: 'Add items directly to your cart. We do not require a lengthy signup process. Just browse and build your order.' },
-                { step: '03', title: 'Submit Request', desc: 'Head to checkout and submit your order request. You can choose to pay via Crypto (10% off) or Bank Wire.' },
-                { step: '04', title: 'We Contact You', desc: 'Our team will review your order details and contact you via Email or WhatsApp to finalize payment and shipping.' }
-            ].map((item, idx) => (
-                <div key={idx} className="relative flex flex-col md:flex-row gap-6 md:gap-12 items-start group">
-                     <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-[#124559] text-[#eff6e0] flex items-center justify-center font-black text-2xl shadow-lg shadow-[#124559]/20 z-10 border-4 border-[#eff6e0]">
-                        {item.step}
-                     </div>
-                     <div className="bg-white p-8 rounded-3xl border border-[#aec3b0]/50 shadow-sm flex-grow group-hover:shadow-md transition-shadow">
-                        <h3 className="text-2xl font-bold text-[#01161e] mb-3">{item.title}</h3>
-                        <p className="text-[#598392] leading-relaxed">{item.desc}</p>
-                     </div>
-                </div>
-            ))}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {[
+                    { title: 'Mix & Match Bulk Orders', desc: 'Combine different brands and flavors to meet MOQs without overstocking single items.' },
+                    { title: 'Dedicated Account Support', desc: 'Get direct access to a wholesale agent for personalized service and order tracking.' },
+                    { title: 'Crypto & Alternative Payments', desc: 'Secure payment options including Bitcoin, Ethereum, and USDT with instant discounts.' },
+                    { title: 'Scalable Supply for Growing Businesses', desc: 'Consistent inventory and fast fulfillment for growing retail businesses.' }
+                ].map((item, idx) => (
+                    <div key={idx} className="bg-white p-8 rounded-3xl border border-[#aec3b0]/50 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1">
+                         <h3 className="text-xl font-bold text-[#124559] mb-3">{item.title}</h3>
+                         <p className="text-[#598392] leading-relaxed">{item.desc}</p>
+                    </div>
+                ))}
+            </div>
         </div>
 
         {/* Info Cards (MOQ & Shipping) */}
@@ -55,11 +53,11 @@ export default function WholesalePage() {
                     </li>
                     <li className="flex items-start gap-3">
                         <svg className="w-6 h-6 text-[#eff6e0] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                        <span>10 Units Per SKU (Mix & Match allowed for samples)</span>
+                        <span>10 Units Per SKU (Mix & Match allowed)</span>
                     </li>
                     <li className="flex items-start gap-3">
                         <svg className="w-6 h-6 text-[#eff6e0] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                        <span>Must provide valid Business ID for tax verification (handled after checkout).</span>
+                        <span>Valid Business ID required for tax verification.</span>
                     </li>
                 </ul>
             </div>
@@ -77,7 +75,7 @@ export default function WholesalePage() {
                     </li>
                     <li className="flex items-start gap-3">
                         <svg className="w-6 h-6 text-[#124559] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                        <span>Damaged items must be reported within 48 hours of delivery for full credit.</span>
+                        <span>Refunds handled on a case-by-case basis.</span>
                     </li>
                 </ul>
             </div>
@@ -85,8 +83,8 @@ export default function WholesalePage() {
 
         {/* CTA */}
         <div className="text-center">
-             <Link href="/products" className="inline-block px-12 py-5 bg-[#124559] text-[#eff6e0] font-black rounded-2xl hover:bg-[#01161e] transition-all shadow-xl hover:-translate-y-1 text-lg">
-                Start My Order
+             <Link href="/contact" className="inline-block px-12 py-5 bg-[#124559] text-[#eff6e0] font-black rounded-2xl hover:bg-[#01161e] transition-all shadow-xl hover:-translate-y-1 text-lg">
+                Submit Wholesale Inquiry
             </Link>
              <p className="mt-4 text-[#598392] text-sm font-bold">Have questions? <Link href="/contact" className="underline hover:text-[#124559]">Contact Support</Link></p>
         </div>

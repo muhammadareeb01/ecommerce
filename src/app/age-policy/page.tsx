@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Age Restriction Policy | Bulk Vapes USA',
-  description: 'Strict age verification policy for all wholesale partners.',
+  description: 'Age Verification & Compliance Policy (21+). Strict adherence to federal and state laws for bulk vape distribution.',
 };
 
 export default function AgePolicyPage() {
