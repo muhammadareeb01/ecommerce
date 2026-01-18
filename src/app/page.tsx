@@ -5,14 +5,19 @@ import ProductCard from '@/components/ui/ProductCard';
 import CategoriesSection from '@/components/layout/CategoriesSection';
 import HomeFaq from '@/components/ui/HomeFaq';
 import { PRODUCTS, REVIEWS } from '@/data/mockData';
+import { client } from '@/sanity/lib/client';
+import { GET_ALL_CATEGORIES_QUERY } from '@/sanity/lib/queries';
 
 export const metadata = {
   title: 'Bulk Vapes Wholesale USA | Buy Disposable Vapes in Bulk & Pay with Crypto',
   description: 'Buy bulk vapes online at wholesale prices in the USA. Disposable vapes, nicotine, THC & THCA vapes in bulk. Pay with BTC, ETH, USDT & get 10% crypto discount.',
 };
 
-export default function Home() {
+export const dynamic = 'force-dynamic';
+
+export default async function Home() {
   const featuredProducts = PRODUCTS.filter(p => p.isFeatured);
+  const categories = await client.fetch(GET_ALL_CATEGORIES_QUERY);
 
   return (
     <div className="flex flex-col min-h-screen font-sans bg-[#eff6e0]">
@@ -83,7 +88,7 @@ export default function Home() {
                 Each category is optimized for bulk buyers and wholesale pricing tiers.
              </p>
         </div>
-        <CategoriesSection />
+        <CategoriesSection categories={categories} />
         <div className="text-center mt-8 mb-20">
             <Link href="/categories" className="inline-block px-10 py-3 border-2 border-[#124559] text-[#124559] font-bold rounded-full hover:bg-[#124559] hover:text-white transition-all">
                 View All Bulk Vape Categories

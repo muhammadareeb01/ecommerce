@@ -1,36 +1,40 @@
 'use client';
-import { useState, useEffect } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useDispatch } from 'react-redux';
-import { PRODUCTS, CATEGORIES, Product } from '@/data/mockData';
+import { PRODUCTS } from '@/data/mockData';
 import { addToCart } from '@/store/features/cartSlice';
 import ProductCard from '@/components/ui/ProductCard';
 import { toast } from 'react-toastify';
 
-export default function ProductClient() {
-  const params = useParams();
-  const slug = params.slug as string;
+interface ProductClientProps {
+  initialProduct: any;
+}
+
+export default function ProductClient({ initialProduct }: ProductClientProps) {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const product = PRODUCTS.find(p => p.slug === slug);
+  const product = initialProduct;
   const [qty, setQty] = useState(1);
 
   if (!product) {
      return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-[#eff6e0] p-4 text-center">
             <h1 className="text-4xl font-black text-[#01161e] mb-4">Product Not Found</h1>
-            <Link href="/products" className="px-8 py-3 bg-[#124559] text-[#eff6e0] font-bold rounded-xl hover:bg-[#01161e]">
+            <Link href="/categories" className="px-8 py-3 bg-[#124559] text-[#eff6e0] font-bold rounded-xl hover:bg-[#01161e]">
                 Back to Catalog
             </Link>
         </div>
     );
   }
 
-  const category = CATEGORIES.find(c => c.slug === product.category);
-  const relatedProducts = PRODUCTS.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4);
+  // Assuming category is a simple string or object from Sanity query now
+  // For related products, ideally we'd pass them in props too, but for now fallback to mock or empty
+  const relatedProducts = PRODUCTS.filter(p => p.category === (product.categoryName || product.category) && p.id !== product._id).slice(0, 4);
+
   
   // Price Logic
   const subtotal = product.price * qty;
@@ -54,7 +58,7 @@ export default function ProductClient() {
             <Link href="/" className="hover:text-[#124559]">Home</Link>
             <span>/</span>
             <Link href={`/category/${product.category}`} className="hover:text-[#124559] capitalize">
-                {product.category.replace('-', ' ')}
+                {(product.categoryName || product.category || '').replace('-', ' ')}
             </Link>
             <span>/</span>
             <span className="text-[#124559]">{product.name}</span>
@@ -85,7 +89,7 @@ export default function ProductClient() {
             <div className="animate-in slide-in-from-right-4 duration-700 fade-in">
                  <div className="mb-6">
                     <span className="inline-block py-1 px-3 rounded-md bg-[#124559]/10 text-[#124559] text-xs font-bold uppercase tracking-wider mb-3">
-                        {product.wholesaleMinQty > 0 ? 'Wholesale Only' : 'In Stock'}
+                        {(product.wholesaleMinQty || 0) > 0 ? 'Wholesale Only' : 'In Stock'}
                     </span>
                     <h1 className="text-4xl md:text-5xl font-black text-[#01161e] mb-4 leading-none tracking-tight">
                         {product.name} Wholesale – Buy in Bulk
@@ -97,7 +101,7 @@ export default function ProductClient() {
                  <div className="flex items-center gap-4 mb-8">
                     <Link href={`/category/${product.category}`} className="group flex items-center gap-2">
                         <span className="bg-[#aec3b0]/20 text-[#124559] text-sm font-bold px-4 py-1.5 rounded-full uppercase tracking-wide border border-[#aec3b0]/30 group-hover:bg-[#124559] group-hover:text-[#eff6e0] transition-colors">
-                            {category?.name}
+                            {product.categoryName || product.category}
                         </span>
                     </Link>
                  </div>
@@ -173,7 +177,6 @@ export default function ProductClient() {
                          </div>
                          <div className="divide-y divide-[#aec3b0]/20">
                             {[
-                                ...(category?.faqs?.slice(0, 2) || []),
                                 { question: "Shipping Times", answer: "Orders placed before 2PM EST ship same business day." },
                                 { question: "Authenticity Guarantee", answer: "All products are 100% authentic and sourced directly." }
                             ].map((faq, i) => (
@@ -198,7 +201,7 @@ export default function ProductClient() {
                     <div className="mb-8">
                         <h3 className="text-lg font-bold text-[#01161e] mb-3">Specifications</h3>
                         <div className="grid grid-cols-2 gap-3">
-                            {product.features.map((feature, idx) => (
+                            {product.features.map((feature: any, idx: number) => (
                                 <div key={idx} className="bg-[#eff6e0] border border-[#aec3b0] px-4 py-2 rounded-xl text-sm font-bold text-[#124559] flex items-center gap-2">
                                     <span className="w-1.5 h-1.5 bg-[#124559] rounded-full"></span>
                                     {feature}
@@ -292,7 +295,7 @@ export default function ProductClient() {
                         onClick={handleAddToCart}
                         className="flex-1 bg-[#124559] text-[#eff6e0] font-black text-lg py-4 px-8 rounded-xl hover:bg-[#01161e] transition-all shadow-xl shadow-[#124559]/20 hover:-translate-y-1"
                     >
-                        Add to Cart → Checkout → Submit Order Request
+                        Add to Cart 
                     </button>
                  </div>
                  <p className="text-center text-[#598392] text-xs mt-3 font-medium">
@@ -310,7 +313,7 @@ export default function ProductClient() {
                         <h2 className="text-3xl md:text-4xl font-black text-[#01161e] mt-1 text-center sm:text-left">Related Products</h2>
                     </div>
                     <Link href={`/category/${product.category}`} className="group flex items-center gap-2 text-[#124559] font-bold hover:text-[#01161e] transition-colors bg-white px-6 py-3 rounded-full border border-[#aec3b0]/30 shadow-sm hover:shadow-md">
-                        <span>View More {category?.name}</span>
+                        <span>View More {product.categoryName || 'Products'}</span>
                         <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                         </svg>

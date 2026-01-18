@@ -1,8 +1,17 @@
 'use client';
 import Link from 'next/link';
-import { CATEGORIES } from '@/data/mockData';
 
-export default function CategoriesSection() {
+interface Category {
+  _id: string;
+  title: string;
+  slug: string;
+}
+
+interface CategoriesSectionProps {
+  categories: Category[];
+}
+
+export default function CategoriesSection({ categories = [] }: CategoriesSectionProps) {
     return (
         <section className="py-20 px-4 max-w-7xl mx-auto">
             <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
@@ -22,15 +31,15 @@ export default function CategoriesSection() {
                 </Link>
             </div>
 
-            {/* Simple Link List - Cards Removed */}
+            {/* Simple Link List - Using Sanity Data */}
             <div className="flex flex-wrap gap-4">
-                {CATEGORIES.map((cat) => (
+                {categories.map((cat) => (
                     <Link 
-                        key={cat.id} 
+                        key={cat._id} 
                         href={`/category/${cat.slug}`}
                         className="px-6 py-3 bg-white border border-[#aec3b0] rounded-full text-[#124559] font-bold hover:bg-[#124559] hover:text-[#eff6e0] transition-colors shadow-sm"
                     >
-                        {cat.name}
+                        {cat.title}
                     </Link>
                 ))}
             </div>
