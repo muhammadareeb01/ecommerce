@@ -1,26 +1,38 @@
 'use client';
 import Link from 'next/link';
 import { useState, useMemo } from 'react';
-import { PRODUCTS, CATEGORIES } from '@/data/mockData';
 import ProductCard from '@/components/ui/ProductCard';
 
-export default function CategoriesPage() {
+interface CategoriesClientProps {
+  initialProducts: any[];
+  initialCategories: any[];
+  pageContent?: {
+    heading?: string;
+    description?: string;
+  };
+}
+
+export default function CategoriesPage({ 
+  initialProducts = [], 
+  initialCategories = [], 
+  pageContent 
+}: CategoriesClientProps) {
   const [searchQuery, setSearchQuery] = useState('');
 
   const filteredProducts = useMemo(() => {
-    let filtered = PRODUCTS;
+    let filtered = initialProducts;
 
     // Filter by search query
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase();
       filtered = filtered.filter(p => 
         p.name.toLowerCase().includes(query) ||
-        p.description.toLowerCase().includes(query)
+        p.description?.toLowerCase().includes(query)
       );
     }
 
     return filtered;
-  }, [searchQuery]);
+  }, [searchQuery, initialProducts]);
 
   return (
     <div className="min-h-screen bg-[#eff6e0] py-16 px-4 sm:px-8 font-sans">
@@ -34,10 +46,10 @@ export default function CategoriesPage() {
              Wholesale Catalog
           </span>
           <h1 className="text-4xl md:text-6xl font-black text-[#01161e] mb-6 tracking-tighter leading-tight drop-shadow-sm">
-            Shop All Products
+            {pageContent?.heading || "Shop All Products"}
           </h1>
           <p className="text-xl md:text-2xl text-[#598392] leading-relaxed max-w-3xl mx-auto font-medium whitespace-pre-line mb-8">
-            Explore our complete inventory of bulk disposable vapes, cartridges, and hardware.
+            {pageContent?.description || "Explore our complete inventory of bulk disposable vapes, cartridges, and hardware."}
           </p>
         </div>
 
@@ -66,7 +78,7 @@ export default function CategoriesPage() {
           >
             All Products
           </Link>
-          {CATEGORIES.map((cat) => (
+{initialCategories.map((cat) => (
             <Link
               key={cat.id}
               href={`/category/${cat.slug}`}
