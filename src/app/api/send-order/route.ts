@@ -84,9 +84,7 @@ export async function POST(request: Request) {
         return NextResponse.json({ success: false, error: adminEmail.error }, { status: 500 });
     }
 
-    // 2. Send Customer Auto-Response
-    // Note: In Resend testing mode, emails can only be sent to verified email (syedareebali795@gmail.com)
-    // In production with verified domain, this will work for any email
+
     const customerEmail = await resend.emails.send({
         from: 'Bulk Vapes USA <onboarding@resend.dev>',
         to: [email],
@@ -103,7 +101,7 @@ export async function POST(request: Request) {
                     <!-- Header -->
                     <div style="background: linear-gradient(135deg, #124559 0%, #01161e 100%); padding: 40px 20px; text-align: center;">
                         <h1 style="color: #eff6e0; margin: 0; font-size: 28px; font-weight: bold;">
-                            ✅ Order Received!
+                            ✅ Order Request Received!
                         </h1>
                         <p style="color: #aec3b0; margin: 10px 0 0 0; font-size: 16px;">
                             Thank you for choosing Bulk Vapes USA

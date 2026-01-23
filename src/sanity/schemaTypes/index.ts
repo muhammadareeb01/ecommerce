@@ -6,6 +6,8 @@ import { faq } from './faq'
 import { settings } from './settings'
 import { wholesale } from './wholesale'
 
+import { homeHeader } from './homeHeader'
+
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [product, category, page, faq, settings, wholesale],
+  types: [product, category, page, faq, settings, wholesale, homeHeader],
 }

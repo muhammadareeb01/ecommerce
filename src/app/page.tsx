@@ -45,38 +45,20 @@ export default async function Home() {
                    Wholesale Only &bull; 21+
                 </span>
                 <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-none mb-8 text-[#eff6e0]">
-                    {homeContent?.heading || 'Bulk Vapes Wholesale in the USA – '}<span className="text-[#aec3b0]">{homeContent?.subheading ? '' : 'Buy Disposable Vapes in Bulk & Save More'}</span>
+                    {homeContent?.heading ? (
+                        homeContent.heading.includes('–') ? (
+                            <>
+                                {homeContent.heading.split('–')[0]}– <span className="text-[#aec3b0]">{homeContent.heading.split('–')[1]}</span>
+                            </>
+                        ) : (
+                             homeContent.heading
+                        )
+                    ) : (
+                        <span >Bulk Vapes Wholesale in the USA – Buy Disposable Vapes in Bulk & Save More</span>
+                    )}
                 </h1>
                 
-                <div className="mb-10 text-lg md:text-xl text-[#598392] max-w-2xl leading-relaxed font-light space-y-4">
-                  {homeContent?.subheading && (
-                    <h2 className="text-2xl font-bold text-[#eff6e0] mb-2">{homeContent.subheading}</h2>
-                  )}
-                  {homeContent?.description ? (
-                    homeContent.description.split('\n').map((paragraph: string, index: number) => (
-                      <p key={index}>{paragraph}</p>
-                    ))
-                  ) : (
-                    <>
-                      <h2 className="text-2xl font-bold text-[#eff6e0] mb-2">Buy Bulk Vapes Online from a Trusted USA Wholesale Supplier</h2>
-                      <p>
-                        Welcome to BulkVapes.us, your reliable source for bulk vapes wholesale in the United States. We supply disposable vapes, nicotine vapes, THC vapes, and THCA disposables in bulk, designed for retailers, resellers, and distributors looking for competitive pricing and fast fulfillment.
-                      </p>
-                      <p>
-                        Order in bulk, mix and match products, and pay with crypto to get an instant 10% discount.
-                      </p>
-                    </>
-                  )}
-                </div>
 
-                <div className="flex flex-col sm:flex-row gap-5">
-                    <Link href="/cart" className="px-10 py-4 bg-[#124559] text-[#eff6e0] font-bold rounded-2xl hover:bg-[#598392] transition-all shadow-xl shadow-[#01161e]/50 text-center text-lg transform hover:-translate-y-1">
-                        Request Bulk Order
-                    </Link>
-                    <Link href="/contact" className="px-10 py-4 bg-[#eff6e0]/10 backdrop-blur-sm border border-[#eff6e0]/20 text-[#eff6e0] font-bold rounded-2xl hover:bg-[#eff6e0]/20 transition-all text-center text-lg">
-                        Talk to a Wholesale Agent
-                    </Link>
-                </div>
                 
                 <div className="mt-12 flex flex-wrap items-center gap-6 text-sm text-[#598392] font-medium">
                     <div className="flex items-center gap-2">
@@ -92,20 +74,70 @@ export default async function Home() {
         </div>
       </div>
 
+      {/* 1.5 NEW INTRO SECTION */}
+      {/* 1.5 NEW INTRO SECTION */}
+      <div className="bg-[#eff6e0] py-24 px-4 border-b border-[#aec3b0]/50 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#aec3b0]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+
+        <div className="max-w-7xl mx-auto">
+            <div className="max-w-4xl flex flex-col items-start text-left relative z-10">
+                
+                {/* Optional Decorative Tag */}
+                <div className="inline-block py-1 px-3 rounded text-[#124559] text-sm font-bold uppercase tracking-widest mb-6 border border-[#124559]/20 bg-[#124559]/5">
+                    Premium Wholesale Supply
+                </div>
+
+                {/* Heading */}
+                {homeContent?.subheading ? (
+                    <h2 className="text-3xl md:text-5xl font-black text-[#01161e] mb-8 leading-[1.1]">
+                        {homeContent.subheading}
+                    </h2>
+                ) : (
+                    <h2 className="text-3xl md:text-5xl font-black text-[#01161e] mb-8 leading-[1.1]">
+                        Buy Bulk Vapes Online from a Trusted USA Wholesale Supplier
+                    </h2>
+                )}
+
+                {/* Content with Left Border Accent */}
+                <div className="border-l-4 border-[#124559] pl-6 md:pl-8 py-2 mb-10">
+                    <div className="text-lg md:text-xl text-[#598392] leading-relaxed font-light space-y-6">
+                        {homeContent?.description ? (
+                            homeContent.description.split('\n').map((paragraph: string, index: number) => (
+                            <p key={index}>{paragraph}</p>
+                            ))
+                        ) : (
+                            <>
+                            <p>
+                                Welcome to BulkVapes.us, your reliable source for bulk vapes wholesale in the United States. We supply disposable vapes, nicotine vapes, THC vapes, and THCA disposables in bulk, designed for retailers, resellers, and distributors looking for competitive pricing and fast fulfillment.
+                            </p>
+                            <p>
+                                Order in bulk, mix and match products, and pay with crypto to get an instant 10% discount.
+                            </p>
+                            </>
+                        )}
+                    </div>
+                </div>
+
+                {/* Buttons Left Aligned */}
+                <div className="flex flex-col sm:flex-row gap-5 w-full sm:w-auto">
+                    <Link href="/cart" className="group px-10 py-4 bg-[#124559] text-[#eff6e0] font-bold rounded-xl hover:bg-[#01161e] transition-all shadow-xl shadow-[#124559]/20 text-center text-lg flex items-center justify-center gap-3">
+                        Request Bulk Order
+                        <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                    </Link>
+                    <Link href="/contact" className="px-10 py-4 bg-transparent border-2 border-[#124559]/20 text-[#124559] font-bold rounded-xl hover:bg-[#124559]/5 transition-all text-center text-lg">
+                        Talk to a Wholesale Agent
+                    </Link>
+                </div>
+
+            </div>
+        </div>
+      </div>
+
       {/* 1.5 CATEGORIES SECTION */}
       <div className="pt-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-8">
-            <h2 className="text-3xl md:text-5xl font-black text-[#01161e] mb-4">Shop Vapes in Bulk by Category</h2>
-             <p className="text-xl text-[#598392] max-w-2xl mx-auto">
-                Each category is optimized for bulk buyers and wholesale pricing tiers.
-             </p>
-        </div>
-        <CategoriesSection categories={categories} />
-        <div className="text-center mt-8 mb-20">
-            <Link href="/categories" className="inline-block px-10 py-3 border-2 border-[#124559] text-[#124559] font-bold rounded-full hover:bg-[#124559] hover:text-white transition-all">
-                View All Bulk Vape Categories
-            </Link>
-        </div>
+     
+        <CategoriesSection  />
+      
       </div>
 
       {/* 2. WHY BUY SECTION */}
@@ -113,14 +145,12 @@ export default async function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-16">
                 <span className="text-[#124559] font-bold uppercase tracking-wider text-sm">Why Choose Us</span>
-                <h2 className="text-3xl md:text-5xl font-black text-[#01161e] mt-3 tracking-tight">Why We’re the Best Place to Buy Bulk Disposable Vapes</h2>
+                <h2 className="text-3xl md:text-5xl font-black text-[#01161e] mt-3 tracking-tight">Why We are the Best Place to Buy Bulk Disposable Vapes</h2>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {[
-                    { icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2', title: 'Wholesale Pricing', desc: 'Competitive wholesale pricing on all bulk vape orders. Maximize your margins.' },
-                    { icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', title: 'Wide Selection', desc: 'Wide range of disposable vapes, cartridges, and vape pens from top brands.' },
-                    { icon: 'M13 10V3L4 14h7v7l9-11h-7z', title: 'Fast & Discreet', desc: 'Fast & discreet USA shipping. We understand the importance of timely delivery.' },
+                    { icon: 'M12 8c-1.657 0-3 .89zz10V3L4 14h7v7l9-11h-7z', title: 'Fast & Discreet', desc: 'Fast & discreet USA shipping. We understand the importance of timely delivery.' },
                     { icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z', title: 'Manual Review', desc: 'Every order is manually reviewed for accuracy and compliance supports.' },
                     { icon: 'M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z', title: 'Crypto Payments', desc: 'We accept BTC, ETH, and USDT (TRC20). Secure, private, and efficient.' },
                     { icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z', title: '10% Discount', desc: 'Get an instant 10% discount when paying with cryptocurrency.' }

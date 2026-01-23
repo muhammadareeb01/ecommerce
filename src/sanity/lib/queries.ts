@@ -41,11 +41,11 @@ export const GET_ALL_FAQS_QUERY = groq`*[_type == "faq"] | order(order asc) {
   answer
 }`;
 
-export const GET_HOME_PAGE_CONTENT_QUERY = groq`*[_type == "page" && slug.current == "home"][0] {
+export const GET_HOME_PAGE_CONTENT_QUERY = groq`*[_type == "homeHeader"] | order(_updatedAt desc)[0] {
   heading,
   subheading,
   description,
-  "heroImage": mainImage.asset->url
+  "heroImage": heroImage.asset->url
 }`;
 
 export const GET_CATEGORIES_WITH_PRODUCTS_QUERY = groq`*[_type == "category"] {
