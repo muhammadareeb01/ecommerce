@@ -1,12 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Section } from '@/components/ui/Section';
-import ProductCard from '@/components/ui/ProductCard';
 import CategoriesSection from '@/components/layout/CategoriesSection';
 import HomeFaq from '@/components/ui/HomeFaq';
-import { PRODUCTS, REVIEWS } from '@/data/mockData';
+import { REVIEWS } from '@/data/mockData';
 import { client } from '@/sanity/lib/client';
 import { GET_ALL_CATEGORIES_QUERY, GET_HOME_PAGE_CONTENT_QUERY } from '@/sanity/lib/queries';
+import Hero from '@/components/layout/Hero';
+import IntroSection from '@/components/layout/IntroSection';
+import BestSellers from '@/components/layout/BestSellers';
 
 export const metadata = {
   title: 'Bulk Vapes Wholesale USA | Buy Disposable Vapes in Bulk & Pay with Crypto',
@@ -16,7 +18,6 @@ export const metadata = {
 export const dynamic = 'force-dynamic';
 
 export default async function Home() {
-  // const featuredProducts = PRODUCTS.filter(p => p.isFeatured); // Unused now
   const categories = await client.fetch(GET_ALL_CATEGORIES_QUERY);
   const homeContent = await client.fetch(GET_HOME_PAGE_CONTENT_QUERY);
 
@@ -24,120 +25,17 @@ export default async function Home() {
     <div className="flex flex-col min-h-screen font-sans bg-[#eff6e0]">
       
       {/* 1. HERO SECTION */}
-      <div className="relative bg-[#01161e] text-[#eff6e0] min-h-[85vh] flex items-center overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0 opacity-40 mix-blend-overlay">
-            <Image 
-                src={homeContent?.heroImage || "https://images.unsplash.com/photo-1534067783741-512d69f66008?auto=format&fit=crop&q=80&w=2000"}
-                alt="Bulk Vapes Wholesale USA"
-                fill
-                className="object-cover"
-                priority
-            />
-            {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#01161e] via-[#01161e]/90 to-transparent"></div>
-        </div>
-        
-        {/* Hero Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col justify-center py-20">
-             <div className="max-w-4xl animate-in slide-in-from-left-10 duration-700 fade-in">
-                <span className="inline-block py-2 px-4 rounded-full bg-[#124559]/30 border border-[#aec3b0]/30 text-[#aec3b0] text-sm font-bold uppercase tracking-wider mb-8 backdrop-blur-md">
-                   Wholesale Only &bull; 21+
-                </span>
-                <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-none mb-8 text-[#eff6e0]">
-                    {homeContent?.heading ? (
-                        homeContent.heading.includes('–') ? (
-                            <>
-                                {homeContent.heading.split('–')[0]}– <span className="text-[#aec3b0]">{homeContent.heading.split('–')[1]}</span>
-                            </>
-                        ) : (
-                             homeContent.heading
-                        )
-                    ) : (
-                        <span >Bulk Vapes Wholesale in the USA – Buy Disposable Vapes in Bulk & Save More</span>
-                    )}
-                </h1>
-                
-
-                
-                <div className="mt-12 flex flex-wrap items-center gap-6 text-sm text-[#598392] font-medium">
-                    <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-[#aec3b0] shadow-[0_0_10px_rgba(174,195,176,0.5)]"></div>
-                        <span>Verified Distributor</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                         <div className="w-2 h-2 rounded-full bg-[#124559] shadow-[0_0_10px_rgba(18,69,89,0.5)]"></div>
-                        <span>Fast Global Shipping</span>
-                    </div>
-                </div>
-             </div>
-        </div>
-      </div>
+      <Hero homeContent={homeContent} />
 
       {/* 1.5 NEW INTRO SECTION */}
-      {/* 1.5 NEW INTRO SECTION */}
-      <div className="bg-[#eff6e0] py-24 px-4 border-b border-[#aec3b0]/50 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#aec3b0]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+      <IntroSection homeContent={homeContent} />
 
-        <div className="max-w-7xl mx-auto">
-            <div className="max-w-4xl flex flex-col items-start text-left relative z-10">
-                
-                {/* Optional Decorative Tag */}
-                <div className="inline-block py-1 px-3 rounded text-[#124559] text-sm font-bold uppercase tracking-widest mb-6 border border-[#124559]/20 bg-[#124559]/5">
-                    Premium Wholesale Supply
-                </div>
-
-                {/* Heading */}
-                {homeContent?.subheading ? (
-                    <h2 className="text-3xl md:text-5xl font-black text-[#01161e] mb-8 leading-[1.1]">
-                        {homeContent.subheading}
-                    </h2>
-                ) : (
-                    <h2 className="text-3xl md:text-5xl font-black text-[#01161e] mb-8 leading-[1.1]">
-                        Buy Bulk Vapes Online from a Trusted USA Wholesale Supplier
-                    </h2>
-                )}
-
-                {/* Content with Left Border Accent */}
-                <div className="border-l-4 border-[#124559] pl-6 md:pl-8 py-2 mb-10">
-                    <div className="text-lg md:text-xl text-[#598392] leading-relaxed font-light space-y-6">
-                        {homeContent?.description ? (
-                            homeContent.description.split('\n').map((paragraph: string, index: number) => (
-                            <p key={index}>{paragraph}</p>
-                            ))
-                        ) : (
-                            <>
-                            <p>
-                                Welcome to BulkVapes.us, your reliable source for bulk vapes wholesale in the United States. We supply disposable vapes, nicotine vapes, THC vapes, and THCA disposables in bulk, designed for retailers, resellers, and distributors looking for competitive pricing and fast fulfillment.
-                            </p>
-                            <p>
-                                Order in bulk, mix and match products, and pay with crypto to get an instant 10% discount.
-                            </p>
-                            </>
-                        )}
-                    </div>
-                </div>
-
-                {/* Buttons Left Aligned */}
-                <div className="flex flex-col sm:flex-row gap-5 w-full sm:w-auto">
-                    <Link href="/cart" className="group px-10 py-4 bg-[#124559] text-[#eff6e0] font-bold rounded-xl hover:bg-[#01161e] transition-all shadow-xl shadow-[#124559]/20 text-center text-lg flex items-center justify-center gap-3">
-                        Request Bulk Order
-                        <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                    </Link>
-                    <Link href="/contact" className="px-10 py-4 bg-transparent border-2 border-[#124559]/20 text-[#124559] font-bold rounded-xl hover:bg-[#124559]/5 transition-all text-center text-lg">
-                        Talk to a Wholesale Agent
-                    </Link>
-                </div>
-
-            </div>
-        </div>
-      </div>
+      {/* BEST SELLERS TITLE */}
+      {/* <BestSellers /> */}
 
       {/* 1.5 CATEGORIES SECTION */}
       <div className="pt-20">
-     
-        <CategoriesSection  />
-      
+        <CategoriesSection />
       </div>
 
       {/* 2. WHY BUY SECTION */}
@@ -202,31 +100,6 @@ export default async function Home() {
            </div>
       </section>
 
-      {/* FEATURED PRODUCTS */}
-       {/* FEATURED PRODUCTS SECTION REMOVED AS REQUESTED 
-       <section className="py-12 md:py-20 w-full mb-12">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4 px-4 max-w-7xl mx-auto w-full">
-            <div>
-                <span className="text-[#124559] font-bold uppercase tracking-wider text-sm">Best Sellers</span>
-                <h2 className="text-3xl md:text-5xl font-black text-[#01161e] mt-3 tracking-tight">Trending Products</h2>
-            </div>
-            <Link href="/categories" className="px-8 py-3 bg-[#01161e] text-[#eff6e0] font-bold rounded-xl hover:bg-[#124559] transition-all shadow-lg hover:shadow-xl">
-                View Full Catalog
-            </Link>
-        </div>
-        <div className="flex flex-wrap justify-center gap-8 px-4 w-full">
-            {featuredProducts.map((product) => (
-                <div 
-                    key={product.id} 
-                    className="w-full sm:w-[calc(50%-2rem)] lg:w-[calc(20%-2rem)]"
-                >
-                    <ProductCard product={product} />
-                </div>
-            ))}
-        </div>
-      </section> 
-      */}
-          
       {/* 3. PROOF SECTION */}
       <Section className="bg-[#124559] text-[#eff6e0] rounded-[3rem] mx-4 md:mx-auto max-w-7xl py-24 mb-20 relative overflow-hidden shadow-2xl">
         <div className="text-center mb-16 relative z-10">

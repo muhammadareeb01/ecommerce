@@ -20,9 +20,9 @@ export default function Footer({ logoUrl }: { logoUrl?: string }) {
                     />
                 </div>
               ) : (
-                <div className="text-3xl font-black tracking-tighter flex items-center gap-2">
-                  <span className="text-[#eff6e0]">BULK</span>
-                  <span className="text-[#aec3b0]">VAPES</span>
+                <div className="text-3xl font-serif tracking-tight flex items-center gap-1.5">
+                  <span className="text-white font-bold">BULK VAPES</span>
+                  <span className="text-[#aec3b0] font-light italic">USA</span>
                 </div>
               )}
             </Link>
