@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Bitcoin, ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { useRef } from 'react';
 
-export default function IntroSection() {
+export default function IntroSection({ homeContent }: { homeContent?: any }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
