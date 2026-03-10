@@ -35,31 +35,82 @@ export default function ContactPage() {
             animate={{ opacity: 1, x: 0 }}
             className="w-full lg:w-1/3 flex flex-col gap-4"
           >
-            <div className="glass-card p-6 md:p-8 flex items-start gap-4 hover:border-accent-blue/30 transition-colors">
-              <div className="w-12 h-12 rounded-xl bg-accent-blue/10 flex items-center justify-center shrink-0">
-                <Mail className="text-accent-blue" size={24} />
+            <div className="glass-card p-6 md:p-8 flex flex-col gap-4">
+              <h3 className="text-xl font-bold text-white mb-2">Response Time & What Happens Next</h3>
+              <p className="text-sm text-white/70 mb-4">Once your message is submitted:</p>
+              
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-xs font-bold mt-1">1</div>
+                <div>
+                  <h4 className="font-bold text-white">Manual Review</h4>
+                  <p className="text-sm text-white/50">Our team reviews your inquiry manually.</p>
+                </div>
               </div>
-              <div>
-                <h3 className="text-lg font-bold text-white mb-1">Email Support</h3>
-                <p className="text-sm text-white/50 mb-2">For general inquiries and order updates.</p>
-                <a href="mailto:support@vapeflow.com" className="text-accent-blue font-bold text-sm hover:underline">support@example.com</a>
+              
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-xs font-bold mt-1">2</div>
+                <div>
+                  <h4 className="font-bold text-white">Direct Response</h4>
+                  <p className="text-sm text-white/50">We respond with the relevant information or next steps.</p>
+                </div>
               </div>
-            </div>
 
-            <div className="glass-card p-6 md:p-8 flex items-start gap-4 hover:border-accent-teal/30 transition-colors">
-              <div className="w-12 h-12 rounded-xl bg-accent-teal/10 flex items-center justify-center shrink-0">
-                <MessageCircle className="text-accent-teal" size={24} />
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-white mb-1">Live Chat</h3>
-                <p className="text-sm text-white/50 mb-2">Available Mon-Fri, 9am - 6pm EST.</p>
-                <div className="inline-flex items-center gap-2 text-xs font-bold text-accent-teal uppercase tracking-widest mt-1">
-                  <span className="w-2 h-2 rounded-full bg-accent-teal animate-pulse" /> Online Now
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-xs font-bold mt-1">3</div>
+                <div>
+                  <h4 className="font-bold text-white">Transaction Details</h4>
+                  <p className="text-sm text-white/50">If applicable, order or payment details are shared directly with you.</p>
                 </div>
               </div>
             </div>
 
-            <div className="glass-card p-6 md:p-8 flex flex-col bg-white/5 border-white/10 mt-4">
+            <div className="glass-card p-6 md:p-8 flex flex-col gap-4">
+              <div className="flex items-center gap-2 mb-2">
+                <h3 className="text-xl font-bold text-white">Important Information</h3>
+              </div>
+              
+              <div className="flex items-start gap-3">
+                <div className="w-5 h-5 rounded-full bg-green-500/20 text-green-500 flex items-center justify-center shrink-0 mt-0.5">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <div>
+                  <h4 className="font-bold text-white text-sm">No Automated Checkout</h4>
+                  <p className="text-xs text-white/50 mt-1">We do not use automated checkout or instant payment systems. Every interaction is human-to-human.</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <div className="w-5 h-5 rounded-full bg-green-500/20 text-green-500 flex items-center justify-center shrink-0 mt-0.5">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <div>
+                  <h4 className="font-bold text-white text-sm">Direct Communication</h4>
+                  <p className="text-xs text-white/50 mt-1">All communication is handled directly by our team. You will never speak to a bot.</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <div className="w-5 h-5 rounded-full bg-green-500/20 text-green-500 flex items-center justify-center shrink-0 mt-0.5">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <div>
+                  <h4 className="font-bold text-white text-sm">Manual Processing</h4>
+                  <p className="text-xs text-white/50 mt-1">Orders, wholesale requests, and general inquiries are processed manually to ensure accuracy.</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <div className="w-5 h-5 rounded-full bg-green-500/20 text-green-500 flex items-center justify-center shrink-0 mt-0.5">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <div>
+                  <h4 className="font-bold text-white text-sm">Transparency</h4>
+                  <p className="text-xs text-white/50 mt-1">We prioritize clarity, transparency, and direct communication in every step of the process.</p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="glass-card p-6 md:p-8 flex flex-col bg-white/5 border-white/10 mt-2">
               <h4 className="font-bold text-white mb-4 uppercase tracking-widest text-xs opacity-50">Quick Help</h4>
               <Link href="/faq" className="flex items-center justify-between text-sm text-white/80 hover:text-white py-2 group">
                 <span className="flex items-center gap-2"><HelpCircle size={16} /> FAQ Center</span>
@@ -90,16 +141,19 @@ export default function ContactPage() {
                     <label className="text-xs font-bold uppercase tracking-widest text-white/50">Email Address</label>
                     <input type="email" className="w-full bg-[#0a0a0a] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent-blue/50 transition-colors" placeholder="john@example.com" />
                   </div>
-                </div>
-                
-                <div className="space-y-2 text-left">
-                  <label className="text-xs font-bold uppercase tracking-widest text-white/50">Inquiry Type</label>
-                  <select className="w-full bg-[#0a0a0a] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent-blue/50 transition-colors appearance-none">
-                    <option value="general">General Question</option>
-                    <option value="order">Order Status</option>
-                    <option value="wholesale">Wholesale Inquiry</option>
-                    <option value="support">Product Support</option>
-                  </select>
+                  <div className="space-y-2 text-left">
+                    <label className="text-xs font-bold uppercase tracking-widest text-white/50">WhatsApp Number*</label>
+                    <input type="tel" required className="w-full bg-[#0a0a0a] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent-blue/50 transition-colors" placeholder="+1234567890" />
+                  </div>
+                  <div className="space-y-2 text-left">
+                    <label className="text-xs font-bold uppercase tracking-widest text-white/50">Inquiry Type</label>
+                    <select className="w-full bg-[#0a0a0a] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent-blue/50 transition-colors appearance-none">
+                      <option value="general">General Question</option>
+                      <option value="order">Order Status</option>
+                      <option value="wholesale">Wholesale Inquiry</option>
+                      <option value="support">Product Support</option>
+                    </select>
+                  </div>
                 </div>
 
                 <div className="space-y-2 text-left">
