@@ -1,89 +1,82 @@
 import Link from 'next/link';
-import Image from 'next/image';
+import { Zap } from 'lucide-react';
 
-export default function Footer({ logoUrl }: { logoUrl?: string }) {
+export default function Footer() {
   return (
-    <footer className="bg-[#01161e] text-[#eff6e0] pt-20 pb-10 border-t border-[#124559]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
+    <footer className="bg-black/50 backdrop-blur-3xl pt-24 pb-12 border-t border-white/5 relative overflow-hidden">
+      {/* Background glow */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-64 bg-accent-blue/5 blur-[120px] -z-10" />
+
+      <div className="container mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12 mb-16">
           
-          {/* Brand Column (Kept for design, but links follow spec below) */}
           <div className="lg:col-span-2">
-            <Link href="/" className="mb-6 block relative">
-              {logoUrl ? (
-                <div className="relative h-12 w-48">
-                    <Image 
-                        src={logoUrl} 
-                        alt="Bulk Vapes Logo" 
-                        fill
-                        className="object-contain object-left"
-                    />
-                </div>
-              ) : (
-                <div className="text-3xl font-serif tracking-tight flex items-center gap-1.5">
-                  <span className="text-white font-bold">BULK VAPES</span>
-                  <span className="text-[#aec3b0] font-light italic">USA</span>
-                </div>
-              )}
+            <Link href="/" className="group flex items-center gap-2 mb-8">
+              <Zap className="text-accent-blue" size={24} />
+              <div className="flex flex-col">
+                <span className="text-2xl font-black tracking-tighter text-white leading-none">VAPEFLOW</span>
+                <span className="text-[10px] font-bold text-accent-blue tracking-[0.3em] uppercase opacity-80">USA</span>
+              </div>
             </Link>
-            <p className="text-[#598392] mb-6 leading-relaxed max-w-sm">
-              America&apos;s leading wholesale distributor for premium disposable vapes and e-liquids.
+            <p className="text-white/40 mb-8 leading-relaxed max-w-sm">
+              America's leading wholesale distributor for premium disposable vapes and e-liquids. Built for performance and reliability.
             </p>
             <div className="flex gap-4">
-                <span className="w-10 h-10 bg-[#124559] rounded-full flex items-center justify-center text-[#eff6e0] font-bold">IG</span>
-                <span className="w-10 h-10 bg-[#124559] rounded-full flex items-center justify-center text-[#eff6e0] font-bold">X</span>
-                <span className="w-10 h-10 bg-[#124559] rounded-full flex items-center justify-center text-[#eff6e0] font-bold">FB</span>
+                {['IG', 'X', 'FB'].map((social) => (
+                  <span key={social} className="w-10 h-10 glass-card flex items-center justify-center text-white/60 font-bold hover:text-accent-blue hover:border-accent-blue/40 transition-all cursor-pointer">
+                    {social}
+                  </span>
+                ))}
             </div>
           </div>
 
-          {/* Column 1 - Shop */}
           <div>
-            <h3 className="text-[#eff6e0] font-bold mb-6 text-lg tracking-wide uppercase border-b border-[#124559] pb-2 inline-block">Shop</h3>
-            <ul className="space-y-3 text-[#aec3b0]">
-              <li><Link href="/wholesale" className="hover:text-[#eff6e0] transition-colors">Wholesale</Link></li>
-              <li><Link href="/categories" className="hover:text-[#eff6e0] transition-colors">Categories</Link></li>
+            <h3 className="text-white font-bold mb-6 text-xs uppercase tracking-[0.2em]">Shop</h3>
+            <ul className="space-y-4 text-white/40 text-sm">
+              <li><Link href="/wholesale" className="hover:text-accent-blue transition-colors">Wholesale</Link></li>
+              <li><Link href="/categories" className="hover:text-accent-blue transition-colors">Categories</Link></li>
+              <li><Link href="/products" className="hover:text-accent-blue transition-colors">All Products</Link></li>
             </ul>
           </div>
 
-          {/* Column 2 - Wholesale */}
           <div>
-            <h3 className="text-[#eff6e0] font-bold mb-6 text-lg tracking-wide uppercase border-b border-[#124559] pb-2 inline-block">Wholesale</h3>
-            <ul className="space-y-3 text-[#aec3b0]">
-              <li><Link href="/distributor-info" className="hover:text-[#eff6e0] transition-colors">Distributor Info</Link></li>
-              <li><Link href="/moq-info" className="hover:text-[#eff6e0] transition-colors">MOQ Info</Link></li>
-              <li><Link href="/shipping" className="hover:text-[#eff6e0] transition-colors">Shipping Info</Link></li>
+            <h3 className="text-white font-bold mb-6 text-xs uppercase tracking-[0.2em]">Wholesale</h3>
+            <ul className="space-y-4 text-white/40 text-sm">
+              <li><Link href="/distributor-info" className="hover:text-accent-blue transition-colors">Distributor Info</Link></li>
+              <li><Link href="/moq-info" className="hover:text-accent-blue transition-colors">MOQ Info</Link></li>
+              <li><Link href="/shipping" className="hover:text-accent-blue transition-colors">Shipping Info</Link></li>
             </ul>
           </div>
 
-          {/* Column 3 - Company */}
           <div>
-            <h3 className="text-[#eff6e0] font-bold mb-6 text-lg tracking-wide uppercase border-b border-[#124559] pb-2 inline-block">Company</h3>
-            <ul className="space-y-3 text-[#aec3b0]">
-              <li><Link href="/about" className="hover:text-[#eff6e0] transition-colors">About Us</Link></li>
-              <li><Link href="/compliance" className="hover:text-[#eff6e0] transition-colors">Compliance & Legality</Link></li>
-              <li><Link href="/faq" className="hover:text-[#eff6e0] transition-colors">FAQ</Link></li>
-              <li><Link href="/contact" className="hover:text-[#eff6e0] transition-colors">Contact Us</Link></li>
+            <h3 className="text-white font-bold mb-6 text-xs uppercase tracking-[0.2em]">Company</h3>
+            <ul className="space-y-4 text-white/40 text-sm">
+              <li><Link href="/about" className="hover:text-accent-blue transition-colors">About Us</Link></li>
+              <li><Link href="/contact" className="hover:text-accent-blue transition-colors">Contact</Link></li>
+              <li><Link href="/faq" className="hover:text-accent-blue transition-colors">FAQ</Link></li>
             </ul>
           </div>
 
-          {/* Column 4 - Legal */}
           <div>
-            <h3 className="text-[#eff6e0] font-bold mb-6 text-lg tracking-wide uppercase border-b border-[#124559] pb-2 inline-block">Legal</h3>
-            <ul className="space-y-3 text-[#aec3b0]">
-              <li><Link href="/terms" className="hover:text-[#eff6e0] transition-colors">Terms & Conditions</Link></li>
-              <li><Link href="/privacy" className="hover:text-[#eff6e0] transition-colors">Privacy Policy</Link></li>
-              <li><Link href="/refund-policy" className="hover:text-[#eff6e0] transition-colors">Refund Policy</Link></li>
-              <li><Link href="/age-policy" className="hover:text-[#eff6e0] transition-colors">Age Restriction</Link></li>
+            <h3 className="text-white font-bold mb-6 text-xs uppercase tracking-[0.2em]">Legal</h3>
+            <ul className="space-y-4 text-white/40 text-sm">
+              <li><Link href="/terms" className="hover:text-accent-blue transition-colors">Terms</Link></li>
+              <li><Link href="/privacy" className="hover:text-accent-blue transition-colors">Privacy</Link></li>
+              <li><Link href="/refund-policy" className="hover:text-accent-blue transition-colors">Refunds</Link></li>
             </ul>
           </div>
 
         </div>
 
-        <div className="border-t border-[#124559] mt-16 pt-8 text-center text-[#598392] text-sm">
-          <p className="mb-2">&copy; {new Date().getFullYear()} Bulk Vapes USA. All rights reserved.</p>
-         
+        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-white/20 text-[10px] font-bold uppercase tracking-widest">
+          <p>&copy; {new Date().getFullYear()} VAPEFLOW ANTIGRAVITY. ALL RIGHTS RESERVED.</p>
+          <div className="flex gap-6">
+            <span className="hover:text-white transition-colors cursor-pointer">SECURE CHECKOUT</span>
+            <span className="hover:text-white transition-colors cursor-pointer">CRYPTO ACCEPTED</span>
+          </div>
         </div>
       </div>
     </footer>
   );
 }
+
