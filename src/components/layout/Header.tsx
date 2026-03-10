@@ -43,6 +43,7 @@ export default function Header({ logoUrl }: { logoUrl?: string }) {
     { name: 'Products', href: '/products' },
     { name: 'Wholesale', href: '/wholesale' },
     { name: 'FAQ', href: '/faq' },
+    { name: 'About', href: '/about' },
     { name: 'Contact', href: '/contact' },
   ];
 
