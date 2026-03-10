@@ -1,22 +1,22 @@
 'use client';
 import { motion } from 'framer-motion';
-import { CreditCard, ShieldCheck, Zap, Truck, Globe } from 'lucide-react';
+import { ShieldCheck, Truck, Headphones, Zap } from 'lucide-react';
 
 const cards = [
   {
-    icon: <Zap className="text-accent-blue" size={32} />,
-    title: 'Modern Ecosystem',
-    desc: 'From high-capacity disposables to advanced refillable systems and 510 cartridges.',
+    icon: <ShieldCheck className="text-accent-blue" size={32} />,
+    title: 'Quality Products',
+    desc: 'Every item in our inventory undergoes strict quality checks to ensure safety and reliable performance.',
   },
   {
-    icon: <Globe className="text-accent-purple" size={32} />,
-    title: 'Market Evolution',
-    desc: 'The vape industry is rapidly evolving with safer materials and efficient delivery tech.',
+    icon: <Headphones className="text-accent-purple" size={32} />,
+    title: '24/7 Customer Support',
+    desc: 'Our dedicated support team is available around the clock to assist you with inquiries and orders.',
   },
   {
     icon: <Truck className="text-accent-teal" size={32} />,
-    title: 'Reliable Supply',
-    desc: 'Consistent availability of top-tier products for both individual and wholesale needs.',
+    title: 'Fast & Secure Delivery',
+    desc: 'We guarantee prompt dispatch with discreet packaging to ensure your order arrives safely and on time.',
   },
 ];
 
@@ -25,9 +25,9 @@ export default function IndustryOverview() {
     <section className="py-24 relative overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-6">Industry Evolution</h2>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-6">Our Commitment</h2>
           <p className="text-white/60 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">
-            The vape industry has moved beyond simple devices into a complex ecosystem of high-performance hardware and premium extracts.
+            We prioritize excellence in every step of the process, from product sourcing to final delivery.
           </p>
         </div>
 
