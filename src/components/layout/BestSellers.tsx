@@ -20,8 +20,8 @@ export default function BestSellers() {
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
           <div>
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Best Sellers</h2>
-            <p className="text-white/50 max-w-xl">Our most popular devices and extracts, trusted by retailers nationwide.</p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-3 sm:mb-4">Best Sellers</h2>
+            <p className="text-sm sm:text-base text-white/50 max-w-xl">Our most popular devices and extracts, trusted by retailers nationwide.</p>
           </div>
           <Link href="/products" className="text-accent-blue font-bold flex items-center gap-2 hover:underline">
             View All Products
@@ -70,9 +70,9 @@ export default function BestSellers() {
         </div>
 
         {/* How to Order Steps */}
-        <div className="glass-card p-8 md:p-12 border-accent-purple/20">
-          <h3 className="text-2xl font-black text-white text-center mb-12">How Ordering Works</h3>
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-12">
+        <div className="glass-card p-6 sm:p-8 md:p-12 border-accent-purple/20">
+          <h3 className="text-xl sm:text-2xl font-black text-white text-center mb-8 sm:mb-12">How Ordering Works</h3>
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-6 sm:gap-8 mb-8 sm:mb-12">
             {[
               { icon: <ShoppingCart />, title: 'Browse & Select', desc: 'Choose products and add them to your cart.' },
               { icon: <CheckCircle />, title: 'Review Cart', desc: 'Verify your items before proceeding.' },

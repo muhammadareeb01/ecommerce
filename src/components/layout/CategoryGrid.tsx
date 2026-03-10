@@ -22,9 +22,9 @@ export default function CategoryGrid() {
   return (
     <section className="py-24 bg-dark/50">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-black text-white mb-4">Explore Categories</h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-accent-blue to-accent-purple mx-auto rounded-full" />
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-black text-white mb-4">Explore Categories</h2>
+          <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-accent-blue to-accent-purple mx-auto rounded-full" />
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 md:gap-6 mb-20">

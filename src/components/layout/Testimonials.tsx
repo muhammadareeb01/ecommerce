@@ -7,9 +7,9 @@ export default function Testimonials() {
   return (
     <section className="py-24 relative overflow-hidden">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-black text-white mb-4">Customer Testimonials</h2>
-          <p className="text-white/40">Real stories from our high-performance product users.</p>
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-black text-white mb-3 sm:mb-4">Customer Testimonials</h2>
+          <p className="text-xs sm:text-sm md:text-base text-white/40">Real stories from our high-performance product users.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

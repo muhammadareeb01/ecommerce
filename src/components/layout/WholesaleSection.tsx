@@ -23,14 +23,14 @@ export default function WholesaleSection() {
             viewport={{ once: true }}
             className="flex-1"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-6 border-accent-purple/20">
-              <span className="text-xs font-black uppercase tracking-widest text-accent-purple">B2B Opportunities</span>
+            <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full glass-card mb-4 sm:mb-6 border-accent-purple/20">
+              <span className="text-[10px] sm:text-xs font-black uppercase tracking-widest text-accent-purple">B2B Opportunities</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-8 leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-6 sm:mb-8 leading-tight">
               Scale Your Business with <br />
               <span className="bg-gradient-to-r from-accent-blue to-accent-purple bg-clip-text text-transparent">Premium Wholesale</span>
             </h2>
-            <p className="text-lg text-white/50 mb-10 leading-relaxed max-w-xl">
+            <p className="text-base sm:text-lg text-white/50 mb-8 sm:mb-10 leading-relaxed max-w-xl">
               Partner with the industry's leading supplier. We provide authentic products, unbeatable bulk margins, and a reliable supply chain for resellers and distributors worldwide.
             </p>
             

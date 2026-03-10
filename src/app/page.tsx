@@ -89,11 +89,11 @@ export default function Home() {
           <div className="glass-card p-12 md:p-24 text-center relative overflow-hidden border-accent-blue/20">
             <div className="absolute inset-0 bg-gradient-to-b from-accent-blue/5 to-transparent" />
             <div className="relative z-10">
-              <h2 className="text-4xl md:text-6xl font-black text-white mb-8 tracking-tighter">
+              <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-white mb-6 sm:mb-8 tracking-tighter">
                 READY TO EXPERIENCE <br />
                 <span className="text-accent-blue">THE FUTURE?</span>
               </h2>
-              <p className="text-xl text-white/50 max-w-2xl mx-auto mb-12">
+              <p className="text-base sm:text-xl text-white/50 max-w-2xl mx-auto mb-8 sm:mb-12">
                 Join thousands of businesses already scaling with our premium product ecosystem.
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-6">

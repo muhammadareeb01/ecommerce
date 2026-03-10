@@ -45,22 +45,22 @@ export default function Hero() {
             <span className="text-xs font-bold tracking-widest uppercase text-accent-blue/80">Next-Gen Performance</span>
           </motion.div>
 
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-8 leading-tight tracking-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black mb-6 sm:mb-8 leading-tight tracking-tight">
             <span className="block text-white">Premium Vapes &</span>
             <span className="block bg-gradient-to-r from-accent-blue via-accent-purple to-accent-teal bg-clip-text text-transparent">Modern Devices</span>
-            <span className="block text-white/90 text-4xl md:text-5xl lg:text-6xl mt-4"> Built for Performance</span>
+            <span className="block text-white/90 text-2xl sm:text-4xl md:text-5xl lg:text-6xl mt-2 sm:mt-4"> Built for Performance</span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-white/60 max-w-3xl mx-auto mb-12 leading-relaxed font-light">
+          <p className="text-base sm:text-xl md:text-2xl text-white/60 max-w-3xl mx-auto mb-8 sm:mb-12 leading-relaxed font-light">
             Leading supplier of premium disposable vapes, cartridges, devices, and accessories with fast delivery and trusted service.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <Link href="/categories" className="btn-neon-blue group flex items-center gap-2 px-10 py-5 text-lg !shadow-none ring-1 ring-accent-blue/30">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+            <Link href="/categories" className="btn-neon-blue group flex items-center justify-center w-full sm:w-auto gap-2 px-8 sm:px-10 py-4 sm:py-5 text-base sm:text-lg !shadow-none ring-1 ring-accent-blue/30">
               Shop Categories
               <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
             </Link>
-            <Link href="/wholesale" className="btn-neon-purple flex items-center gap-2 px-10 py-5 text-lg !shadow-none !animate-none border-accent-purple/30">
+            <Link href="/wholesale" className="btn-neon-purple flex flex-col sm:flex-row items-center justify-center w-full sm:w-auto gap-2 px-8 sm:px-10 py-4 sm:py-5 text-base sm:text-lg !shadow-none !animate-none border-accent-purple/30">
               Wholesale Program
             </Link>
           </div>
