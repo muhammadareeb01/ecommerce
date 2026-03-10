@@ -1,7 +1,7 @@
 'use client';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { BadgeDollarSign, ShieldCheck, Box, Zap } from 'lucide-react';
+import { BadgeDollarSign, ShieldCheck, Box, Zap, Coins } from 'lucide-react';
 
 const badges = [
   { icon: <BadgeDollarSign />, text: 'Bulk Pricing' },
@@ -43,15 +43,21 @@ export default function WholesaleSection() {
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="flex-1 grid grid-cols-2 gap-6"
+            className="flex-1 grid grid-cols-2 gap-4 md:gap-6"
           >
-            {badges.map((badge, idx) => (
-              <div key={idx} className="glass-card p-8 flex flex-col items-center text-center relative overflow-hidden group">
+            {[
+              { icon: <BadgeDollarSign />, title: 'Bulk Pricing', desc: 'Competitive rates for large orders.' },
+              { icon: <ShieldCheck />, title: 'Authenticity', desc: 'Sourced from trusted suppliers.' },
+              { icon: <Coins />, title: 'Crypto Discount', desc: 'Save with digital payments.' },
+              { icon: <Zap />, title: 'Priority Shipping', desc: 'Quick dispatch on every order.' },
+            ].map((item, idx) => (
+              <div key={idx} className="glass-card p-6 md:p-8 flex flex-col items-center text-center relative overflow-hidden group min-h-[160px] md:min-h-[200px] justify-center">
                 <div className="absolute inset-0 bg-gradient-to-tr from-accent-blue/0 via-white/5 to-accent-blue/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
-                <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-6 text-accent-blue border border-white/5">
-                  {badge.icon}
+                <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-4 md:mb-6 text-accent-blue border border-white/5">
+                  {item.icon}
                 </div>
-                <h4 className="text-white font-bold">{badge.text}</h4>
+                <h4 className="text-white font-bold text-sm md:text-base mb-1 md:mb-2">{item.title}</h4>
+                <p className="text-[10px] md:text-xs text-white/40 leading-tight">{item.desc}</p>
               </div>
             ))}
           </motion.div>

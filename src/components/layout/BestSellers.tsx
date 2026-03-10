@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { PRODUCTS } from '@/data/mockData';
-import { ShoppingCart, CheckCircle, Truck, CreditCard } from 'lucide-react';
+import { ShoppingCart, CheckCircle, Truck, CreditCard, Zap } from 'lucide-react';
 
 const steps = [
   { icon: <ShoppingCart />, title: 'Choose Product', desc: 'Select from our premium catalog.' },
@@ -70,21 +70,34 @@ export default function BestSellers() {
         </div>
 
         {/* How to Order Steps */}
-        <div className="glass-card p-12 border-accent-purple/20">
-          <h3 className="text-2xl font-black text-white text-center mb-12">How to Order</h3>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {steps.map((step, idx) => (
+        <div className="glass-card p-8 md:p-12 border-accent-purple/20">
+          <h3 className="text-2xl font-black text-white text-center mb-12">How Ordering Works</h3>
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-12">
+            {[
+              { icon: <ShoppingCart />, title: 'Browse & Select', desc: 'Choose products and add them to your cart.' },
+              { icon: <CheckCircle />, title: 'Review Cart', desc: 'Verify your items before proceeding.' },
+              { icon: <CreditCard />, title: 'Submit Request', desc: 'Confirm your cart and submit the form.' },
+              { icon: <Zap />, title: 'Receive Invoice', desc: 'Payment details sent via Email/WhatsApp.' },
+              { icon: <Truck />, title: 'Processing', desc: 'Shipped within 24-48 hours after payment.' },
+            ].map((step, idx) => (
               <div key={idx} className="text-center relative">
-                <div className="w-16 h-16 rounded-full bg-accent-purple/10 flex items-center justify-center mx-auto mb-6 text-accent-purple border border-accent-purple/30">
+                <div className="w-14 h-14 rounded-full bg-accent-purple/10 flex items-center justify-center mx-auto mb-6 text-accent-purple border border-accent-purple/30">
                   {step.icon}
                 </div>
-                <h4 className="text-white font-bold mb-2">{step.title}</h4>
-                <p className="text-white/40 text-sm leading-relaxed">{step.desc}</p>
-                {idx < 3 && (
-                  <div className="hidden md:block absolute top-8 left-[70%] w-full h-[1px] bg-gradient-to-r from-accent-purple/30 to-transparent" />
+                <h4 className="text-white font-bold mb-2 text-sm">{step.title}</h4>
+                <p className="text-white/40 text-[11px] leading-relaxed line-clamp-2 md:line-clamp-none">{step.desc}</p>
+                {idx < 4 && (
+                  <div className="hidden lg:block absolute top-7 left-[70%] w-full h-[1px] bg-gradient-to-r from-accent-purple/30 to-transparent" />
                 )}
               </div>
             ))}
+          </div>
+          
+          <div className="pt-8 border-t border-white/5 text-center">
+            <p className="text-xs text-white/40 italic">
+              <span className="text-accent-purple font-bold mr-1">NB:</span>
+              After placing your order, you may contact support or send a WhatsApp message to confirm your request and speed up the processing time.
+            </p>
           </div>
         </div>
       </div>

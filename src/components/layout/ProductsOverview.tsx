@@ -53,14 +53,14 @@ export default function ProductsOverview() {
           </div>
 
           {/* Right Side: Content */}
-          <div className="flex-1">
+          <div className="flex-1 text-center lg:text-left">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/40 text-[10px] font-bold uppercase tracking-widest mb-6">
               Commercial Overview
             </div>
             
             <h2 className="text-4xl md:text-5xl font-black text-white mb-8 leading-tight">
-              Ready to Supply <br />
-              <span className="bg-gradient-to-r from-accent-blue to-accent-teal bg-clip-text text-transparent">Your Inventory</span>
+              Buy Premium <br />
+              <span className="bg-gradient-to-r from-accent-blue to-accent-teal bg-clip-text text-transparent">Products For Sale</span>
             </h2>
 
             <div className="space-y-8 mb-12">

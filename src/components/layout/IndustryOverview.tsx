@@ -58,34 +58,34 @@ export default function IndustryOverview() {
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="glass-card p-1 md:p-12 relative overflow-hidden border-accent-blue/20"
+          className="glass-card p-8 md:p-12 relative overflow-hidden border-accent-blue/20"
         >
           <div className="absolute top-0 right-0 w-64 h-64 bg-accent-blue/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
           
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
-            <div className="text-left">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-12 relative z-10">
+            <div className="text-center lg:text-left">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-blue/10 border border-accent-blue/30 text-accent-blue text-xs font-bold uppercase tracking-widest mb-4 animate-neon-pulse">
-                5% Discount
+                10% Discount
               </div>
               <h3 className="text-3xl font-black text-white mb-2">Pay with Cryptocurrency</h3>
-              <p className="text-white/60 max-w-md">
-                Secure, fast, and verified. Get an instant 5% discount on all orders made with BTC, ETH, or USDT.
+              <p className="text-white/60 max-w-md mx-auto lg:mx-0">
+                Secure, fast, and verified. Get an instant 10% discount on all orders made with BTC, ETH, or USDT.
               </p>
             </div>
             
-            <div className="flex gap-4">
-              <div className="glass-card p-6 flex flex-col items-center gap-2 border-white/10 w-32">
-                <div className="text-orange-500 font-bold text-2xl">₿</div>
-                <span className="text-xs text-white/40">Bitcoin</span>
-              </div>
-              <div className="glass-card p-6 flex flex-col items-center gap-2 border-white/10 w-32">
-                <div className="text-blue-500 font-bold text-2xl">◆</div>
-                <span className="text-xs text-white/40">Ethereum</span>
-              </div>
-              <div className="glass-card p-6 flex flex-col items-center gap-2 border-white/10 w-32 text-accent-teal">
-                <ShieldCheck size={24} />
-                <span className="text-xs text-white/40">Verified</span>
-              </div>
+            <div className="grid grid-cols-3 gap-3 md:gap-4 w-full lg:w-auto">
+              {[
+                { label: 'Bitcoin', icon: '₿', color: 'text-orange-500' },
+                { label: 'Ethereum', icon: '◆', color: 'text-blue-500' },
+                { label: 'Verified', icon: <ShieldCheck size={24} />, color: 'text-accent-teal' }
+              ].map((item, i) => (
+                <div key={i} className="glass-card p-4 md:p-6 flex flex-col items-center justify-center gap-2 border-white/10 min-w-[80px] md:w-32 aspect-square">
+                  <div className={`${typeof item.icon === 'string' ? item.color + ' text-2xl' : item.color} font-bold`}>
+                    {item.icon}
+                  </div>
+                  <span className="text-[10px] md:text-xs text-white/40 font-bold uppercase tracking-tight">{item.label}</span>
+                </div>
+              ))}
             </div>
           </div>
         </motion.div>

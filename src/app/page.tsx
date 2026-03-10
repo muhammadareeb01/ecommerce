@@ -97,7 +97,7 @@ export default function Home() {
                 Join thousands of businesses already scaling with our premium product ecosystem.
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-6">
-                 <button className="btn-neon-blue px-12 py-5 text-lg">Start Bulk Order</button>
+                 <button className="btn-neon-blue px-12 py-5 text-lg">Most Popular Products</button>
                  <button className="btn-neon-purple px-12 py-5 text-lg">Contact Sales</button>
               </div>
             </div>
