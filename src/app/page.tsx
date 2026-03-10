@@ -14,8 +14,45 @@ export const metadata = {
 };
 
 export default function Home() {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Bulk Vapes USA',
+    url: 'https://bulkvapes.us',
+    logo: 'https://bulkvapes.us/logo.png',
+    sameAs: [
+      'https://www.instagram.com/bulkvapesusa',
+      'https://twitter.com/bulkvapesusa',
+    ],
+    description: 'Leading wholesale distributor for premium vapes and hardware.',
+    address: {
+      '@type': 'PostalAddress',
+      addressCountry: 'US',
+    },
+  };
+
+  const webSiteLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Bulk Vapes USA',
+    url: 'https://bulkvapes.us',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: 'https://bulkvapes.us/products?q={search_term_string}',
+      'query-input': 'required name=search_term_string',
+    },
+  };
+
   return (
     <main className="min-h-screen relative">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteLd) }}
+      />
       {/* Background Mesh Gradient */}
       <div className="bg-mesh" />
 

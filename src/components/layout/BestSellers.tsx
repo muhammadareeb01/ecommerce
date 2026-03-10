@@ -45,7 +45,7 @@ export default function BestSellers() {
                   className="w-full h-full p-4"
                 >
                   <Image
-                    src={product.image}
+                    src={"https://cdn.sanity.io/images/3zfeiea5/production/d1e5677ae70ea61d207543a1bcdc9b15518d1d77-1024x1024.jpg"}
                     alt={product.name}
                     fill
                     className="object-contain transition-transform duration-500 group-hover:scale-110"

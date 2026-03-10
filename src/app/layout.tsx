@@ -13,8 +13,54 @@ import { GET_SETTINGS_QUERY } from '@/sanity/lib/queries';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Bulk Vapes USA | Premium Vape Distributor',
-  description: 'Leading distributor of disposable vapes, e-liquids, and pods.',
+  metadataBase: new URL('https://bulkvapes.us'),
+  title: {
+    default: 'Bulk Vapes USA | Premium Wholesale Vape Distributor',
+    template: '%s | Bulk Vapes USA'
+  },
+  description: 'America\'s leading wholesale distributor for premium disposable vapes, cartridges, and e-liquids. Secure crypto payments and fast discreet shipping.',
+  keywords: ['bulk vapes', 'wholesale vapes', 'disposable vapes bulk', 'vape distributor usa', 'buy vapes with crypto'],
+  authors: [{ name: 'VapeFlow USA' }],
+  creator: 'VapeFlow USA',
+  publisher: 'VapeFlow USA',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://bulkvapes.us',
+    siteName: 'Bulk Vapes USA',
+    title: 'Bulk Vapes USA | Premium Wholesale Vape Distributor',
+    description: 'Leading supplier of high-performance disposable vapes and hardware. Wholesale margins starting at low MOQs.',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Bulk Vapes USA Wholesale',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Bulk Vapes USA | Premium Wholesale Vape Distributor',
+    description: 'Leading supplier of high-performance disposable vapes and hardware.',
+    images: ['/og-image.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default async function RootLayout({
@@ -32,7 +78,7 @@ export default async function RootLayout({
             <main className="min-h-screen">
             {children}
             </main>
-            <Footer logoUrl={settings?.logoUrl} />
+            <Footer />
             <ToastContainer />
             <WhatsAppChat />
         </ReduxProvider>
