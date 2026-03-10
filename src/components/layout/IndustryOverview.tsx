@@ -1,22 +1,22 @@
 'use client';
 import { motion } from 'framer-motion';
-import { CreditCard, ShieldCheck, Zap, Truck, Globe } from 'lucide-react';
+import { CreditCard, ShieldCheck, Zap, Truck, Globe, Headphones } from 'lucide-react';
 
 const cards = [
   {
-    icon: <Zap className="text-accent-blue" size={32} />,
-    title: 'Modern Ecosystem',
-    desc: 'From high-capacity disposables to advanced refillable systems and 510 cartridges.',
+    icon: <ShieldCheck className="text-accent-blue" size={32} />,
+    title: 'Quality Products',
+    desc: 'Every item in our inventory undergoes strict quality checks to ensure safety and reliable performance.',
   },
   {
-    icon: <Globe className="text-accent-purple" size={32} />,
-    title: 'Market Evolution',
-    desc: 'The vape industry is rapidly evolving with safer materials and efficient delivery tech.',
+    icon: <Headphones className="text-accent-purple" size={32} />,
+    title: '24/7 Customer Support',
+    desc: 'Our dedicated support team is available around the clock to assist you with inquiries and orders.',
   },
   {
     icon: <Truck className="text-accent-teal" size={32} />,
-    title: 'Reliable Supply',
-    desc: 'Consistent availability of top-tier products for both individual and wholesale needs.',
+    title: 'Fast & Secure Delivery',
+    desc: 'We guarantee prompt dispatch with discreet packaging to ensure your order arrives safely and on time.',
   },
 ];
 
