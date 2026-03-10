@@ -39,17 +39,24 @@ export default function WholesaleSection() {
             </Link>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="flex-1 grid grid-cols-2 gap-4 md:gap-6"
-          >
+          <div className="flex-1 w-full pt-16 lg:pt-0 border-t border-white/5 lg:border-t-0 mt-8 lg:mt-0">
+            <div className="text-center lg:text-left mb-8 sm:mb-12">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-white text-center">
+                Why <span className="bg-gradient-to-r from-accent-blue to-accent-purple bg-clip-text text-transparent">Choose Us</span>
+              </h3>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="grid grid-cols-2 gap-4 md:gap-6"
+            >
             {[
-              { icon: <BadgeDollarSign />, title: 'Bulk Pricing', desc: 'Competitive rates for large orders.' },
-              { icon: <ShieldCheck />, title: 'Authenticity', desc: 'Sourced from trusted suppliers.' },
-              { icon: <Coins />, title: 'Crypto Discount', desc: 'Save with digital payments.' },
-              { icon: <Zap />, title: 'Priority Shipping', desc: 'Quick dispatch on every order.' },
+              { icon: <BadgeDollarSign />, title: 'Bulk Pricing Available', desc: 'Competitive pricing for larger quantity orders.' },
+              { icon: <ShieldCheck />, title: 'Authenticity Guaranteed', desc: 'Products sourced from trusted suppliers.' },
+              { icon: <Coins />, title: 'Crypto Payment Discount', desc: 'Save when paying with supported cryptocurrencies.' },
+              { icon: <Zap />, title: 'Priority Shipping', desc: 'Orders processed and dispatched quickly.' },
             ].map((item, idx) => (
               <div key={idx} className="glass-card p-6 md:p-8 flex flex-col items-center text-center relative overflow-hidden group min-h-[160px] md:min-h-[200px] justify-center">
                 <div className="absolute inset-0 bg-gradient-to-tr from-accent-blue/0 via-white/5 to-accent-blue/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
@@ -60,7 +67,8 @@ export default function WholesaleSection() {
                 <p className="text-[10px] md:text-xs text-white/40 leading-tight">{item.desc}</p>
               </div>
             ))}
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>
