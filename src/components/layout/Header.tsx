@@ -34,10 +34,10 @@ export default function Header({ logoUrl }: { logoUrl?: string }) {
       href: '/categories', 
       hasDropdown: true,
       items: [
-        { name: 'Disposable Vapes', href: '/categories/disposable-vapes' },
-        { name: '510 Cartridges', href: '/categories/510-cartridges' },
-        { name: 'Wax Pens', href: '/categories/wax-pens' },
-        { name: 'Accessories', href: '/categories/accessories' },
+        { name: 'Disposable Vapes', href: '/category/disposable-vapes' },
+        { name: '510 Cartridges', href: '/category/510-cartridges' },
+        { name: 'Wax Pens', href: '/category/wax-pens' },
+        { name: 'Accessories', href: '/category/accessories' },
       ]
     },
     { name: 'Products', href: '/products' },
