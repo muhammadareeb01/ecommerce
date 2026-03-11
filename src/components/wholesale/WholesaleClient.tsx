@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { 
     Truck, 
     ShieldCheck, 
@@ -102,7 +102,7 @@ export default function WholesaleClient({ data }: WholesaleClientProps) {
     ];
 
     // Animation Variants for mask reveal
-    const titleVariant = {
+    const titleVariant: Variants = {
         hidden: { y: "100%" },
         visible: { 
             y: 0,

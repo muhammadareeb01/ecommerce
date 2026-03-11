@@ -59,7 +59,7 @@ export default function FAQPreview() {
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
+                    transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] as const }}
                     className="overflow-hidden"
                   >
                     <div className="p-6 pt-0 text-white/50 leading-relaxed border-t border-white/5">
