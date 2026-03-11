@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { Product } from '@/data/mockData';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '@/store/features/cartSlice';
+import { ShoppingCart, Plus, ArrowUpRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface ProductCardProps {
   product: Product;
@@ -21,61 +23,81 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <Link 
         href={`/product/${product.slug}`}
-        className="group relative flex flex-col h-full bg-[#eff6e0] rounded-[20px] overflow-hidden border-2 border-[#aec3b0] hover:border-[#598392] transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+        className="group relative flex flex-col h-full bg-white/[0.03] rounded-[24px] overflow-hidden border border-white/10 hover:border-accent-blue/50 transition-all duration-700 hover:shadow-[0_0_40px_rgba(0,210,255,0.15)] hover:-translate-y-2"
     >
-      {/* Image Container with White Background */}
-      <div className="relative aspect-[4/3] bg-white w-full overflow-hidden border-b border-[#aec3b0]/30">
+      {/* 🟦 Top Badge */}
+      <div className="absolute top-4 left-4 z-20">
+          <div className="px-3 py-1 rounded-full bg-accent-blue/10 border border-accent-blue/30 text-accent-blue text-[8px] font-black uppercase tracking-[0.2em] backdrop-blur-md">
+              Premium Stock
+          </div>
+      </div>
+
+      {/* 🖼️ Image Container */}
+      <div className="relative aspect-square w-full overflow-hidden bg-white/5 border-b border-white/5">
         <Image
           src={product.image}
           alt={product.name}
           fill
-          className="object-contain p-6 group-hover:scale-110 transition-transform duration-500"
+          className="object-contain p-8 group-hover:scale-110 transition-transform duration-[1.5s] ease-out drop-shadow-2xl"
         />
-        {/* Badge Removed */ }
-        <div className="absolute top-4 right-4 bg-green-500 text-white text-[10px] font-bold px-3 py-1.5 rounded shadow-sm uppercase tracking-wide z-10 animate-pulse">
-            10% Crypto Off
+        
+        {/* Hover Overlay with Button */}
+        <div className="absolute inset-0 bg-accent-blue/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 backdrop-blur-[2px] flex items-center justify-center">
+            <div className="w-14 h-14 rounded-full bg-white text-black flex items-center justify-center transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 shadow-2xl">
+                <ArrowUpRight size={24} />
+            </div>
+        </div>
+
+        {/* Floating Crypto Off Badge */}
+        <div className="absolute bottom-4 right-4 bg-green-500/10 border border-green-500/30 text-green-500 text-[9px] font-black px-3 py-1.5 rounded-lg backdrop-blur-md shadow-lg animate-neon-pulse z-10">
+            -10% CRYPTO
         </div>
       </div>
       
-      {/* Content Container */}
-      <div className="p-4 flex flex-col flex-grow">
+      {/* 📝 Content Container */}
+      <div className="p-6 flex flex-col flex-grow relative overflow-hidden">
+        {/* Glow effect */}
+        <div className="absolute top-[-50%] left-[-50%] w-full h-full bg-accent-blue/5 blur-[80px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
         
         {/* Category Tag */}
-        <div className="mb-2">
-            <span className="inline-block bg-[#aec3b0]/30 text-[#124559] text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+        <div className="mb-4 flex items-center justify-between relative z-10">
+            <span className="text-accent-teal text-[10px] font-black uppercase tracking-[0.2em]">
                 {product.category.replace('-', ' ')}
             </span>
+            <div className="flex items-center gap-1 text-white/20">
+                <Plus size={12} />
+                <span className="text-[10px] font-bold">FLOW</span>
+            </div>
         </div>
 
         {/* Title */}
-        <h3 className="text-lg font-black text-[#01161e] mb-4 leading-tight group-hover:text-[#124559] transition-colors line-clamp-2">
+        <h3 className="text-xl font-black text-white/90 mb-6 leading-[1.1] group-hover:text-accent-blue transition-colors line-clamp-2 tracking-tighter uppercase italic">
             {product.name}
         </h3>
         
-        {/* Price Box */}
-        <div className="mt-auto bg-white/60 backdrop-blur-sm rounded-xl p-3 flex items-center justify-between shadow-sm border border-[#aec3b0]/50 mb-4">
-             <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded-full bg-[#598392] flex items-center justify-center text-[10px] font-bold text-white shadow-inner">
-                    $
+        {/* Price Box - High Tech Design */}
+        <div className="mt-auto flex items-end justify-between relative z-10">
+             <div className="flex flex-col">
+                <span className="text-[9px] font-black text-white/30 uppercase tracking-widest mb-1">MSRP / WHOLESALE</span>
+                <div className="flex items-baseline gap-1">
+                    <span className="text-2xl font-black text-white italic tracking-tighter">${product.price.toFixed(2)}</span>
+                    <span className="text-[10px] text-white/20 font-bold">USD</span>
                 </div>
-                <span className="text-xl font-black text-[#01161e]">${product.price.toFixed(2)}</span>
              </div>
-             {/* {product.wholesaleMinQty > 0 && (
-                <span className="text-xs text-[#598392] font-medium">Min: {product.wholesaleMinQty}</span>
-             )} */}
-        </div>
 
-        {/* Add to Cart Button */}
-        <button 
-            onClick={handleAddToCart}
-            className="w-full bg-[#124559] hover:bg-[#01161e] text-[#eff6e0] font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2 shadow-lg shadow-[#124559]/20"
-        >
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-            </svg>
-            ADD TO CART
-        </button>
+             {/* Dynamic CTA Button */}
+             <button 
+                onClick={handleAddToCart}
+                className="w-14 h-14 rounded-2xl bg-white/[0.05] border border-white/10 flex items-center justify-center text-white hover:bg-accent-blue hover:text-black hover:border-accent-blue hover:shadow-[0_0_20px_rgba(0,210,255,0.4)] transition-all duration-500"
+                title="Add to Cart"
+             >
+                <ShoppingCart size={22} />
+             </button>
+        </div>
       </div>
+      
+      {/* Bottom Border Glow */}
+      <div className="absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-accent-blue to-accent-teal group-hover:w-full transition-all duration-700" />
     </Link>
   );
 }
